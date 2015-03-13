@@ -1,0 +1,19 @@
+{
+  "name": "store-app-angularjs",
+  "version": "0.1.0",
+  "description": "Store application with AngularJS",
+  "main": "index.html",
+  "author": "Artem Demo",
+  "dependencies": {
+    "angular": "^1.3.14",
+    "angular-ui-router": "^0.2.13",
+    "bootstrap": "^3.3.2"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-less": "^1.0.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-serve": "^0.1.6"
+  }
+}

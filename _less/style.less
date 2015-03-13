@@ -1,0 +1,32 @@
+@app_bg: '../../_img/fruits_blured.jpeg';
+
+@basic_color: orangered;
+
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+button { cursor: pointer; }
+
+.clearRow:after {
+    clear: both;
+    display: table;
+    content: " ";
+}
+
+.left { float: left; }
+.right { float: right; }
+
+.muted-text { color: #aaaaaa; }
+
+ul { margin: 0; padding: 0; list-style-type: none; }
+
+#mainContainer {
+    background: url( @app_bg );
+    background-repeat: no-repeat;
+    position: absolute;
+    background-size: auto 100%;
+    width: 100%;
+    height: 100%;
+}

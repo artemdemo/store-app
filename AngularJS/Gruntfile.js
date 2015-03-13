@@ -35,7 +35,9 @@ module.exports = function(grunt) {
                 files: {
                     "js/app.js": [
                         "components/init.js",
-                        "components/controllers.js"
+                        "components/constants.js",
+                        "components/controllers.js",
+                        "components/factories.js"
                     ]
                 }
             }
@@ -45,13 +47,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    
-    /*
-     * In order to run server just use command
-     * $ grunt serve
-     * The you will be able to open files from the server: http://localhost:9000/index.html
-     */
-    grunt.loadNpmTasks('grunt-serve');
 
     grunt.registerTask('default',['less','pack','watch']);
 

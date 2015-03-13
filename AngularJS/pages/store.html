@@ -1,0 +1,65 @@
+<div class="store-page" ng-controller="storeCtrl">
+
+    <div class="container clearRow">
+        
+        <div class="shelfContainer">
+            <div class="categoriesContainer">
+                <ul class="list clearRow">
+                    <li class="item"
+                        ng-class="{ 'active' : checkActiveCategory(cat) }"
+                        ng-repeat="cat in menu track by cat.id"
+                        ng-click="selectCategoty(cat)">
+                        {{ cat.category }}
+                    </li>
+                </ul>
+            </div>
+            <div class="itemsContainer">
+                <ul class="list">
+                    <li class="item clearRow"
+                        ng-repeat="item in currentCategory.items track by item.id"
+                        ng-click="addItem(item)">
+                        <div class="clearRow">
+                            <div class="name left">{{ item.name }}</div>
+                            <div class="price right">{{ item.price | currency }}</div>
+                        </div>
+                        <div class="description muted-text">{{ item.description }}</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="cartContainer" ng-controller="cartCtrl">
+            <h1>Your Cart</h1>
+            <div class="cartItemsContainer">
+                <ul class="list">
+                    <li class="item clearRow"
+                        ng-repeat="item in cart.items track by item._uniqueID">
+                        <div class="name left">{{ item.name }}</div>
+                        <div class="price right">
+                            {{ item.price | currency }}
+                            <span class="remove"
+                                  ng-click="removeItem(item)">x</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="cartTotalsContainer">
+                <div class="clearRow subtotal">
+                    <div class="title"></div>
+                    <div class="amount"></div>
+                </div>
+                <div class="clearRow tax">
+                    <div class="title"></div>
+                    <div class="amount"></div>
+                </div>
+                <div class="clearRow total">
+                    <div class="title"></div>
+                    <div class="amount"></div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+</div>

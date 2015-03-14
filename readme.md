@@ -5,8 +5,10 @@ Creating store application with different frameworks
 Frameworks:
 * AngularJS
 * ReactJS
-* WinJS
+* Backbone
 * EmberJS
+* WinJS
+
 
 Tools:
 * Coffeescript (AnglarJS)
@@ -42,3 +44,5 @@ This is the code:
   }
 ]
 ```
+
+![alt tag](https://github.com/artemdemo/store-app/blob/master/_img/store-app.png)

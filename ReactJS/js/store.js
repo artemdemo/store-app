@@ -1,4 +1,4 @@
-/*global React, $, document, console, emitter*/
+/*global React, $, document, console, EventEmitter*/
 
 // ToDo MVC tutorial: https://www.codementor.io/reactjs/tutorial/react-js-flux-architecture-tutorial
 
@@ -17,8 +17,8 @@ var store = null;
 function Job(){
     EventEmitter.call(this);
 }
-Job.prototype = new EventEmitter;
-var emitter = new Job;
+Job.prototype = new EventEmitter();
+var emitter = new Job();
 
 var StoreContainer = React.createClass({displayName: "StoreContainer",
   render: function() {
@@ -161,7 +161,7 @@ var Cart = React.createClass({displayName: "Cart",
   componentWillMount: function() {
     emitter.on('add-to-cart', function(newProduct) {
         var newCartItems = this.state.cartItems;
-        newProduct._uniqueID = (new Date).getTime();
+        newProduct._uniqueID = (new Date()).getTime();
         newCartItems.push( newProduct );
         this.calculateTotals();
         this.setState({ active: newCartItems });

@@ -20,6 +20,8 @@ button { cursor: pointer; }
 
 .muted-text { color: #aaaaaa; }
 
+.center { text-align: center; }
+
 ul { margin: 0; padding: 0; list-style-type: none; }
 
 #mainContainer {
@@ -29,4 +31,166 @@ ul { margin: 0; padding: 0; list-style-type: none; }
     background-size: auto 100%;
     width: 100%;
     height: 100%;
+}
+
+.home-page {
+    margin: 20% auto 0 auto;
+    width: 95%;
+    min-width: 1000px;
+    text-align: center;
+    color: white;
+    
+    h1 {
+      font-size: 80px;
+      font-weight: 400;
+      line-height: 80px;
+    }
+    
+    button {
+      width: 300px;
+      font-weight: 400;
+      display: block;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: @basic_color;
+      color: white;
+      border: 0;
+      border-radius: 3px;
+      font-size: 24px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.27);
+    }
+}
+
+
+.store-page {
+    margin: 10% auto 0 auto;
+    width: 80%;
+    min-width: 1000px;
+    
+    .shelfContainer {
+        float: left;
+        width: 68%;
+        
+        .categoriesContainer {
+            
+            .list {
+                color: white;
+                background-color: black;
+                
+                .active { background-color: @basic_color; }
+                
+                li {
+                    cursor: pointer;
+                    display: block;
+                    padding: 11px 22px;
+                    text-align: center;
+                    float: left;
+                }
+                li:hover { .active }
+                
+            } // END -> .store-page .shelfContainer .categoriesContainer .list
+            
+        } // END -> .store-page .shelfContainer .categoriesContainer
+        
+        .itemsContainer {
+            @min_max: 607px;
+            min-height: @min_max;
+            max-height: @min_max;
+            background-color: white;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            
+            .list {
+                color: black;
+                background-color: white;
+                
+                li {
+                    cursor: pointer;
+                    display: block;
+                    padding: 15px 22px;
+                    border-bottom: 1px solid #ededed;
+                }
+                
+                li:hover { background-color: #f0f0f0; }
+                
+                .description {
+                    height: 43px;
+                    margin-top: 5px;
+                    font-size: 15px;
+                    overflow: hidden;
+                }
+            }
+        } // END -> .store-page .shelfContainer .itemsContainer
+        
+    } // END -> .store-page .shelfContainer
+    
+    .cartContainer {
+        float: right;
+        width: 30%;
+        border: 2px solid @basic_color;
+        background-color: white;
+        
+        h1 {
+            font-weight: 400;
+            margin: 0;
+            padding: 7px 0;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            background-color: @basic_color;
+        }
+        
+        .cartItemsContainer {
+            @min_max: 464px;
+            min-height: @min_max;
+            max-height: @min_max;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+        
+        .list {
+            .item {
+                padding: 13px 15px;
+                border-bottom: 1px solid #ededed;
+            }
+            .item .remove {
+                display: inline-block;
+                border-radius: 50%;
+                border: 1px solid @basic_color;
+                width: 15px;
+                height: 15px;
+                text-align: center;
+                line-height: 14px;
+                font-size: 12px;
+                position: relative;
+                top: -2px;
+                cursor: pointer;
+            }
+        } // END -> .store-page .cartContainer .list
+        
+        .cartTotalsContainer {
+            color: white;
+            background-color: @basic_color;
+            
+            .line { padding: 6px 37px 0px 15px; }
+            .line:last-of-type { padding-bottom: 7px; }
+            .total { font-weight: 700; }
+            
+        } // END -> .store-page .cartContainer .cartTotalsContainer
+        
+        .checkoutContainer {
+            button {
+                width: 100%;
+                font-weight: 400;
+                display: block;
+                margin: 0 auto;
+                padding: 14px;
+                background-color: lighten(spin(@basic_color, 15), 5%);
+                color: white;
+                border: 0;
+                font-size: 21px;
+            }
+        } // END -> .store-page .cartContainer .checkoutContainer
+        
+    } // END -> .store-page .cartContainer
 }

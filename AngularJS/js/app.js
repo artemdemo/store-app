@@ -114,15 +114,26 @@ var storeApp = angular.module("storeApp", ["ui.router"]);
      * @class cartCtrl
      */
     var cartCtrl = function( $scope, cartFactory ) {
-        $scope.cart = cartFactory.getCart();
+        updateCart();
         
         $scope.$on('update-cart', function(){
-            $scope.cart = cartFactory.getCart();
+            updateCart();
         });
         
         $scope.removeItem = function(item) {
             cartFactory.removeItem( item );
+            updateCart();
         };
+        
+        $scope.checkout = function() {};
+        
+        function updateCart() {
+            $scope.cart = cartFactory.getCart();
+            $scope.itemsCount = cartFactory.getItemsCount();
+            $scope.subtotal = cartFactory.getSubTotal();
+            $scope.tax = cartFactory.getTax();
+            $scope.total = cartFactory.getTotal();
+        }
     };
     app.controller("cartCtrl", ["$scope", "cartFactory", cartCtrl]);
     
@@ -271,6 +282,15 @@ var storeApp = angular.module("storeApp", ["ui.router"]);
          * @return {Object}
          */
         cartFactory.getCart = function(){ return Cart; };
+        
+        /**
+         * Return number of items in the cart
+         * 
+         * @function getItemsCount
+         * @memberof cartFactory
+         * @return {Number}
+         */
+        cartFactory.getItemsCount = function() { return Cart.items.length; };
         
         return cartFactory;
     };

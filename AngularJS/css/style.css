@@ -19,6 +19,9 @@ button {
 .muted-text {
   color: #aaaaaa;
 }
+.center {
+  text-align: center;
+}
 ul {
   margin: 0;
   padding: 0;
@@ -84,7 +87,9 @@ ul {
   background-color: orangered;
 }
 .store-page .shelfContainer .itemsContainer {
-  max-height: 505px;
+  min-height: 607px;
+  max-height: 607px;
+  background-color: white;
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -121,4 +126,51 @@ ul {
   color: white;
   font-size: 20px;
   background-color: orangered;
+}
+.store-page .cartContainer .cartItemsContainer {
+  min-height: 464px;
+  max-height: 464px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.store-page .cartContainer .list .item {
+  padding: 13px 15px;
+  border-bottom: 1px solid #ededed;
+}
+.store-page .cartContainer .list .item .remove {
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid orangered;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+  line-height: 14px;
+  font-size: 12px;
+  position: relative;
+  top: -2px;
+  cursor: pointer;
+}
+.store-page .cartContainer .cartTotalsContainer {
+  color: white;
+  background-color: orangered;
+}
+.store-page .cartContainer .cartTotalsContainer .line {
+  padding: 6px 37px 0px 15px;
+}
+.store-page .cartContainer .cartTotalsContainer .line:last-of-type {
+  padding-bottom: 7px;
+}
+.store-page .cartContainer .cartTotalsContainer .total {
+  font-weight: 700;
+}
+.store-page .cartContainer .checkoutContainer button {
+  width: 100%;
+  font-weight: 400;
+  display: block;
+  margin: 0 auto;
+  padding: 14px;
+  background-color: #ff911a;
+  color: white;
+  border: 0;
+  font-size: 21px;
 }

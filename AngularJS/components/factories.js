@@ -142,6 +142,15 @@
          */
         cartFactory.getCart = function(){ return Cart; };
         
+        /**
+         * Return number of items in the cart
+         * 
+         * @function getItemsCount
+         * @memberof cartFactory
+         * @return {Number}
+         */
+        cartFactory.getItemsCount = function() { return Cart.items.length; };
+        
         return cartFactory;
     };
     app.factory("cartFactory", [cartFactory]);

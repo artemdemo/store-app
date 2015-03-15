@@ -35,7 +35,8 @@ module.exports = function(grunt) {
                 files: {
                     "js/app.js": [
                         "components/init.js",
-                        "components/home.js"
+                        "components/home.js",
+                        "components/store.js"
                     ]
                 }
             }

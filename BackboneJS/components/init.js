@@ -21,6 +21,7 @@ var storeApp = (function() {
                 return this;
             }
         };
+    
     var ViewsFactory = {
         home: function() {
             if(!this.homeView) {
@@ -28,11 +29,38 @@ var storeApp = (function() {
                     el: api.content
                 });
             }
-            return this.menuView;
+            return this.homeView;
+        },
+        store: function() {
+            if(!this.storeView) {
+                this.storeView = new api.views.store({ 
+                    el: api.content
+                });
+            }
+            return this.storeView;
         }
     };
-    var Router = Backbone.Router.extend({});
+    
+    var Router = Backbone.Router.extend({
+            routes: {
+                "store": "store",
+                "": "home"
+            },
+            store: function() {
+                console.log('Store');
+                //ViewsFactory.store();
+                var view = ViewsFactory.store();
+                api.changeContent(view.$el);
+                view.render();
+            },
+            home: function() {
+                console.log('Home');
+                //ViewsFactory.home();
+            }
+        });
     api.router = new Router();
+    
+    Backbone.history.start(); 
  
     return api;
  

@@ -21,8 +21,87 @@
         <div class="home-page">
             <div class="container">
                 <h1>Start shopping now</h1>
-                <button>Enter Store</button>
+                <a class="button" href="#store">Enter Store</a>
             </div>
+        </div>
+    </script>
+    <script type="text/template" id="tpl-store">
+        <div class="store-page" ng-controller="storeCtrl">
+            <div class="container clearRow">
+
+                <div class="shelfContainer">
+                </div>
+
+                <div class="cartContainer">
+                </div>
+
+            </div>
+
+        </div>
+    </script>
+    <script type="text/template" id="tpl-store-shelf">
+        <div class="categoriesContainer">
+            <ul class="list clearRow">
+                <li class="item"
+                    ng-class="{ 'active' : checkActiveCategory(cat) }"
+                    ng-repeat="cat in menu track by cat.id"
+                    ng-click="selectCategoty(cat)">
+                    {{ cat.category }}
+                </li>
+            </ul>
+        </div>
+        <div class="itemsContainer">
+            <ul class="list">
+                <li class="item clearRow"
+                    ng-repeat="item in currentCategory.items track by item.id"
+                    ng-click="addItem(item)">
+                    <div class="clearRow">
+                        <div class="name left">{{ item.name }}</div>
+                        <div class="price right">{{ item.price | currency }}</div>
+                    </div>
+                    <div class="description muted-text">{{ item.description }}</div>
+                </li>
+            </ul>
+        </div>
+    </script>
+    <script type="text/template" id="tpl-store-cart">
+        <h1>Your Cart</h1>
+        <div class="cartItemsContainer">
+            <div class="muted-text center"
+                 ng-hide="itemsCount">There are no items in the cart</div>
+            <ul class="list">
+                <li class="item clearRow"
+                    ng-repeat="item in cart.items track by item._uniqueID">
+                    <div class="name left">{{ item.name }}</div>
+                    <div class="price right">
+                        {{ item.price | currency }}
+                        <span class="remove"
+                              ng-click="removeItem(item)">x</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="cartTotalsContainer">
+            <div class="clearRow line subtotal">
+                <div class="title left">Subtotal:</div>
+                <div class="amount right">{{ subtotal | currency }}</div>
+            </div>
+            <div class="clearRow line tax">
+                <div class="title left">Tax:</div>
+                <div class="amount right">{{ tax | currency }}</div>
+            </div>
+            <div class="clearRow line total">
+                <div class="title left">Total:</div>
+                <div class="amount right">{{ total | currency }}</div>
+            </div>
+        </div>
+
+        <div class="checkoutContainer">
+            <button class="checkout"
+                    ng-click="checkout()">
+                Checkout
+            </button>
         </div>
     </script>
 </html>

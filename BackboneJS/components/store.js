@@ -7,14 +7,25 @@
         tagName: "div",
         
         initialize: function() {
+            this.viewB = new ViewsFactory.store_shelf();
+            this.viewB.parentView = this;
+            $(this.el).append(this.viewB.el);
             this.render();
         },
         render: function(){
-            /* 
-             * "this.$el" is an object created by the framework and every view has it by default.
-             * By default, it is an empty <div></div>.
-             * It can be changed in "tagName"
-             */
+            this.$el.html(this.template({}));
+        }
+    });
+    
+    app.views.store_shelf = Backbone.View.extend({
+        template: _.template($("#tpl-store-shelf").html()),
+          
+        tagName: "div",
+        
+        initialize: function() {
+            this.render();
+        },
+        render: function(){
             this.$el.html(this.template({}));
         }
     });

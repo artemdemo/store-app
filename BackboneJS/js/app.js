@@ -1,6 +1,9 @@
-/*global $, Backbone, document*/
+/*global $, Backbone, document, console*/
 
-// Good tutorial: http://code.tutsplus.com/tutorials/single-page-todo-application-with-backbonejs--cms-21417
+/*
+ * Good general tutorial: http://code.tutsplus.com/tutorials/single-page-todo-application-with-backbonejs--cms-21417
+ * Nested views: http://stackoverflow.com/a/6476507
+ */
 
 var storeApp = (function() {
  
@@ -10,7 +13,6 @@ var storeApp = (function() {
             collections: {},
             content: null,
             router: null,
-            todos: null,
             init: function() {
                 this.content = $("#mainContainer");
                 ViewsFactory.home();
@@ -38,6 +40,14 @@ var storeApp = (function() {
                 });
             }
             return this.storeView;
+        },
+        store_shelf: function() {
+            if(!this.store_shelfView) {
+                this.store_shelfView = new api.views.store_shelf({ 
+                    el: api.content
+                });
+            }
+            return this.storeView;
         }
     };
     
@@ -48,14 +58,17 @@ var storeApp = (function() {
             },
             store: function() {
                 console.log('Store');
-                //ViewsFactory.store();
                 var view = ViewsFactory.store();
                 api.changeContent(view.$el);
                 view.render();
             },
             home: function() {
                 console.log('Home');
-                //ViewsFactory.home();
+                if (api.views.hasOwnProperty('home')) {
+                    var view = ViewsFactory.home();
+                    api.changeContent(view.$el);
+                    view.render();
+                }
             }
         });
     api.router = new Router();
@@ -105,14 +118,25 @@ $(document).ready(function(){
         tagName: "div",
         
         initialize: function() {
+            this.viewB = new ViewsFactory.store_shelf();
+            this.viewB.parentView = this;
+            $(this.el).append(this.viewB.el);
             this.render();
         },
         render: function(){
-            /* 
-             * "this.$el" is an object created by the framework and every view has it by default.
-             * By default, it is an empty <div></div>.
-             * It can be changed in "tagName"
-             */
+            this.$el.html(this.template({}));
+        }
+    });
+    
+    app.views.store_shelf = Backbone.View.extend({
+        template: _.template($("#tpl-store-shelf").html()),
+          
+        tagName: "div",
+        
+        initialize: function() {
+            this.render();
+        },
+        render: function(){
             this.$el.html(this.template({}));
         }
     });

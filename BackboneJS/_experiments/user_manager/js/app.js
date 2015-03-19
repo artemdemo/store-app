@@ -49,10 +49,24 @@ app.UserList = Backbone.View.extend({
 
 app.EditUser = Backbone.View.extend({
     el: '.page',
-    render: function() {
+    render: function(options) {
         var that = this;
         var template = _.template( $('#user-edit-template').html() );
-        that.$el.html( template() );
+        if ( options.id ) {
+            /*
+            // GET request to the server
+            var user = new User({id: options.id});
+            user.fetch({
+                success: function (user) {
+                    
+                }
+            });
+            */
+            var currentUser = app.usersCollection.get(options.id);
+            that.$el.html( template({user: currentUser}) );
+        } else {
+            that.$el.html( template( {user: null} ) );
+        }
     },
     events: {
         'submit .edit-user-form': 'saveUser'
@@ -70,7 +84,7 @@ app.EditUser = Backbone.View.extend({
             }
         });
         */
-        app.usersCollection.add(userDetails);
+        app.usersCollection.set(userDetails,{remove: false});
         app.router.navigate('', {trigger: true});
     }
 });
@@ -79,7 +93,8 @@ app.EditUser = Backbone.View.extend({
 app.Router = Backbone.Router.extend({
     routes: {
         '': 'home',
-        'new': 'editUser'
+        'new': 'editUser',
+        'edit/:id': 'editUser'
     }
 });
 
@@ -90,8 +105,8 @@ app.router = new app.Router();
 app.router.on('route:home', function(){
     app.userlist.render();
 });
-app.router.on('route:editUser', function(){
-    app.editUser.render();
+app.router.on('route:editUser', function(id){
+    app.editUser.render({id: id});
 });
 
 Backbone.history.start();

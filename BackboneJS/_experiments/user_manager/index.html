@@ -21,7 +21,7 @@
         <script type="text/template" id="user-list-template">
             <a href="#/new" class="btn btn-primary">New User</a>
             <hr />
-            <table class="table striped">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>First Name</th>
@@ -36,7 +36,7 @@
                             <td><%= user.get('firstname') %></td>
                             <td><%- user.get('lastname') %></td>
                             <td><%= user.get('age') %></td>
-                            <td></td>
+                            <td><a href="#/edit/<%= user.id %>" class="btn btn-default btn-sm">Edit</a></td>
                         </tr>
                     <% }); %>
                 </tbody>
@@ -44,23 +44,24 @@
         </script>
         
         <script type="text/template" id="user-edit-template">
-        <form class="edit-user-form">
-            <legend>Create User</legend>
-            <div class="form-group">
-            <label>First Name</label>
-            <input type="text" class="form-control" name="firstname" />
-            </div>
-            <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" class="form-control" name="lastname" />
-            </div>
-            <div class="form-group">
-            <label>Age</label>
-            <input type="number" class="form-control" name="age" />
-            </div>
-            <hr />
-            <button type="submit" class="btn">Create</button>
-        </form>
+            <form class="edit-user-form">
+                <legend> <%= user ? 'Update' : 'Create' %> User</legend>
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" name="firstname" value="<%= user ? user.get('firstname') : '' %>" />
+                </div>
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" name="lastname" value="<%= user ? user.get('lastname') : '' %>" />
+                </div>
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" class="form-control" name="age"  value="<%= user ? user.get('age') : '' %>" />
+                </div>
+                <hr />
+                <input type="hidden" name="id" value="<%= user ? user.id : (new Date()).getTime() %>" />
+                <button type="submit" class="btn"><%= user ? 'Update' : 'Create' %></button>
+            </form>
         </script>
         
         <script  src="../vendor/jquery.min.js"></script>

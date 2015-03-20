@@ -26,7 +26,7 @@
         </div>
     </script>
     <script type="text/template" id="tpl-store">
-        <div class="store-page" ng-controller="storeCtrl">
+        <div class="store-page">
             <div class="container clearRow">
 
                 <div class="shelfContainer">
@@ -42,58 +42,59 @@
     <script type="text/template" id="tpl-store-shelf">
         <div class="categoriesContainer">
             <ul class="list clearRow">
-                <li class="item"
-                    ng-class="{ 'active' : checkActiveCategory(cat) }"
-                    ng-repeat="cat in menu track by cat.id"
-                    ng-click="selectCategoty(cat)">
-                    {{ cat.category }}
-                </li>
+                <% _.each(categories, function(cat){ %>
+                    <li class="item <%= (cat.get('id') == currentCategoryID) ? 'active' : '' %>"
+                        data-category-id="<%= cat.get('id') %>">
+                        <%= cat.get('category') %>
+                    </li>
+                <% }); %>
             </ul>
         </div>
         <div class="itemsContainer">
             <ul class="list">
-                <li class="item clearRow"
-                    ng-repeat="item in currentCategory.items track by item.id"
-                    ng-click="addItem(item)">
-                    <div class="clearRow">
-                        <div class="name left">{{ item.name }}</div>
-                        <div class="price right">{{ item.price | currency }}</div>
-                    </div>
-                    <div class="description muted-text">{{ item.description }}</div>
-                </li>
+                <% _.each(currentCategoryItems, function(item){ %>
+                    <li class="item clearRow" data-item-id="<%= item.get('id') %>">
+                        <div class="clearRow">
+                            <div class="name left"><%= item.get('name') %></div>
+                            <div class="price right"><%= renderPrice( item.get('price') ) %></div>
+                        </div>
+                        <div class="description muted-text"><%= item.get('description') %></div>
+                    </li>
+                <% }); %>
             </ul>
         </div>
     </script>
     <script type="text/template" id="tpl-store-cart">
         <h1>Your Cart</h1>
         <div class="cartItemsContainer">
-            <div class="muted-text center"
-                 ng-hide="itemsCount">There are no items in the cart</div>
+            <% if ( items.length === 0 ) { %>
+                <div class="muted-text center">There are no items in the cart</div>
+            <% }; %>
             <ul class="list">
-                <li class="item clearRow"
-                    ng-repeat="item in cart.items track by item._uniqueID">
-                    <div class="name left">{{ item.name }}</div>
-                    <div class="price right">
-                        {{ item.price | currency }}
-                        <span class="remove"
-                              ng-click="removeItem(item)">x</span>
-                    </div>
-                </li>
+                <% _.each(items, function(item){ %>
+                    <li class="item clearRow">
+                        <div class="name left"><%= item.get('name') %></div>
+                        <div class="price right">
+                            <%= renderPrice( item.get('price') ) %>
+                            <span class="remove" data-item-id="<%= item.get('id') %>">x</span>
+                        </div>
+                    </li>
+                <% }); %>
             </ul>
         </div>
 
         <div class="cartTotalsContainer">
             <div class="clearRow line subtotal">
                 <div class="title left">Subtotal:</div>
-                <div class="amount right">{{ subtotal | currency }}</div>
+                <div class="amount right"><%= renderPrice( subtotal ) %></div>
             </div>
             <div class="clearRow line tax">
                 <div class="title left">Tax:</div>
-                <div class="amount right">{{ tax | currency }}</div>
+                <div class="amount right"><%= renderPrice( tax ) %></div>
             </div>
             <div class="clearRow line total">
                 <div class="title left">Total:</div>
-                <div class="amount right">{{ total | currency }}</div>
+                <div class="amount right"><%= renderPrice( total ) %></div>
             </div>
         </div>
 

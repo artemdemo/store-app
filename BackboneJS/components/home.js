@@ -1,24 +1,27 @@
 /*global storeApp, _, $, Backbone*/
-(function(app) {
 
-    app.views.home = Backbone.View.extend({
-        template: _.template($("#tpl-home").html()),
-          
-        tagName: "div",
+(function(app){
 
-        className: "home-page",
-        
-        initialize: function() {
-            this.render();
-        },
-        render: function(){
-            /* 
-             * "this.$el" is an object created by the framework and every view has it by default.
-             * By default, it is an empty <div></div>.
-             * It can be changed in "tagName"
-             */
-            this.$el.html(this.template({}));
+    var HomePage = Backbone.View.extend({
+        el: app.viewsFactory.mainContainer,
+        render: function () {
+            var self = this;
+            var template = _.template( $('#tpl-home').html() );
+            self.$el.html( template() );
+
+            if ( ! app.menuFactory.menuCollection ) {
+                app.menuFactory.menuCollection = new app.menuFactory.Menu();
+                app.menuFactory.menuCollection.fetch({
+                    success: function(menuObj) {}
+                });
+            }
         }
     });
     
+    app.viewsFactory.HomePage = new HomePage();
+    
+    app.router.on('route:home', function(){
+        app.viewsFactory.HomePage.render();
+    });
+
 })(storeApp);

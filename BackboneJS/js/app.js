@@ -1,144 +1,187 @@
 /*global $, Backbone, document, console*/
 
-/*
- * Good general tutorial: http://code.tutsplus.com/tutorials/single-page-todo-application-with-backbonejs--cms-21417
- * Nested views: http://stackoverflow.com/a/6476507
- */
+var storeApp = {
+    viewsFactory: {
+        mainContainer: '#mainContainer'
+    },
+    menuFactory: {},
+};
 
-var storeApp = (function() {
- 
-    var api = {
-            views: {},
-            models: {},
-            collections: {},
-            content: null,
-            router: null,
-            init: function() {
-                this.content = $("#mainContainer");
-                ViewsFactory.home();
-                return this;
-            },
-            changeContent: function(el) {
-                this.content.empty().append(el);
-                return this;
-            }
-        };
-    
-    var ViewsFactory = {
-        home: function() {
-            if(!this.homeView) {
-                this.homeView = new api.views.home({ 
-                    el: api.content
-                });
-            }
-            return this.homeView;
-        },
-        store: function() {
-            if(!this.storeView) {
-                this.storeView = new api.views.store({ 
-                    el: api.content
-                });
-            }
-            return this.storeView;
-        },
-        store_shelf: function() {
-            if(!this.store_shelfView) {
-                this.store_shelfView = new api.views.store_shelf({ 
-                    el: api.content
-                });
-            }
-            return this.storeView;
-        }
-    };
-    
-    var Router = Backbone.Router.extend({
-            routes: {
-                "store": "store",
-                "": "home"
-            },
-            store: function() {
-                console.log('Store');
-                var view = ViewsFactory.store();
-                api.changeContent(view.$el);
-                view.render();
-            },
-            home: function() {
-                console.log('Home');
-                if (api.views.hasOwnProperty('home')) {
-                    var view = ViewsFactory.home();
-                    api.changeContent(view.$el);
-                    view.render();
-                }
-            }
-        });
-    api.router = new Router();
-    
-    Backbone.history.start(); 
- 
-    return api;
- 
-})();
+storeApp.menuFactory.Category = Backbone.Model.extend({
+    urlRoot: './categories'
+});
+
+storeApp.menuFactory.Menu = Backbone.Collection.extend({
+    url: '../menu.json',
+    model: storeApp.menuFactory.Category
+});
+
+
+storeApp.Router = Backbone.Router.extend({
+    routes: {
+        '': 'home',
+        'store': 'store'
+    }
+});
+storeApp.router = new storeApp.Router();
+
 
 
 $(document).ready(function(){
-    storeApp.init();
+    Backbone.history.start();
 });
-    
 
 /*global storeApp, _, $, Backbone*/
-(function(app) {
 
-    app.views.home = Backbone.View.extend({
-        template: _.template($("#tpl-home").html()),
-          
-        tagName: "div",
+(function(app){
 
-        className: "home-page",
-        
-        initialize: function() {
-            this.render();
-        },
-        render: function(){
-            /* 
-             * "this.$el" is an object created by the framework and every view has it by default.
-             * By default, it is an empty <div></div>.
-             * It can be changed in "tagName"
-             */
-            this.$el.html(this.template({}));
+    var HomePage = Backbone.View.extend({
+        el: app.viewsFactory.mainContainer,
+        render: function () {
+            var self = this;
+            var template = _.template( $('#tpl-home').html() );
+            self.$el.html( template() );
+
+            if ( ! app.menuFactory.menuCollection ) {
+                app.menuFactory.menuCollection = new app.menuFactory.Menu();
+                app.menuFactory.menuCollection.fetch({
+                    success: function(menuObj) {}
+                });
+            }
         }
     });
     
+    app.viewsFactory.HomePage = new HomePage();
+    
+    app.router.on('route:home', function(){
+        app.viewsFactory.HomePage.render();
+    });
+
 })(storeApp);
 /*global storeApp, _, $, Backbone*/
-(function(app) {
 
-    app.views.store = Backbone.View.extend({
-        template: _.template($("#tpl-store").html()),
-          
-        tagName: "div",
-        
-        initialize: function() {
-            this.viewB = new ViewsFactory.store_shelf();
-            this.viewB.parentView = this;
-            $(this.el).append(this.viewB.el);
-            this.render();
+(function(app){
+
+    // Main object of cart page definition
+    var StorePage = Backbone.View.extend({
+        el: app.viewsFactory.mainContainer,
+        currency: '$',
+        render: function () {
+            var self = this;
+            var template = _.template( $('#tpl-store').html() );
+            self.$el.html( template() );
+            
+            afterStorePageRender();
         },
-        render: function(){
-            this.$el.html(this.template({}));
+        renderPrice: function(price) {
+            return app.viewsFactory.storePage.currency + price.toFixed(2);
         }
     });
     
-    app.views.store_shelf = Backbone.View.extend({
-        template: _.template($("#tpl-store-shelf").html()),
-          
-        tagName: "div",
-        
-        initialize: function() {
+    app.viewsFactory.storePage = new StorePage();
+    
+    var Item = Backbone.Model.extend();
+    var Items = Backbone.Collection.extend({
+        model: Item
+    });
+    var CartItems = Backbone.Collection.extend({
+        model: Item
+    });
+    
+    // Main object of shelf view definition
+    var ShelfView = Backbone.View.extend({
+        el: '.shelfContainer',
+        currentCategory: null,
+        currentItems: new Items(),
+        render: function () {
+            var self = this;
+            var template = _.template( $('#tpl-store-shelf').html() );
+            self.$el.html( template({
+                categories: app.menuFactory.menuCollection.models,
+                currentCategoryID: self.currentCategory.get('id'),
+                currentCategoryItems: self.currentItems.models,
+                renderPrice: app.viewsFactory.storePage.renderPrice
+            }) );
+        },
+        events: {
+            'click .categoriesContainer .item': 'openCategory',
+            'click .itemsContainer .item': 'addItemToCart'
+        },
+        openCategory: function(ev) {
+            var catId = ev.currentTarget.dataset.categoryId;
+            this.currentCategory = app.menuFactory.menuCollection.get(catId);
+            this.currentItems.set( this.currentCategory.get('items') );
             this.render();
         },
-        render: function(){
-            this.$el.html(this.template({}));
+        addItemToCart: function(ev) {
+            var itemId = ev.currentTarget.dataset.itemId;
+            var item = this.currentItems.get(itemId).toJSON();
+            // I need to change ID, otherise I can't add two identical items
+            item.id = (new Date()).getTime();
+            item.menuId = itemId;
+            app.viewsFactory.cartView.items.add(item);
+            app.viewsFactory.cartView.render();
         }
     });
     
+    // Main object of cart view definition
+    var CartView = Backbone.View.extend({
+        el: '.cartContainer',
+        items: new CartItems(),
+        render: function () {
+            var self = this;
+            var template = _.template( $('#tpl-store-cart').html() );
+            self.$el.html( template({
+                items: this.items.models,
+                subtotal: this.getSubTotal(),
+                tax: this.getTax(),
+                total: this.getTotal(),
+                renderPrice: app.viewsFactory.storePage.renderPrice
+            }) );
+        },
+        events: {
+            'click .cartItemsContainer .remove': 'removeItemFromCart'
+        },
+        removeItemFromCart: function(ev) {
+            var itemId = ev.currentTarget.dataset.itemId;
+            var item = this.items.get(itemId);
+            item.trigger('destroy', item);
+            this.render();
+        },
+        getSubTotal: function() {
+            var subtotal = 0;
+            _.each(this.items.models, function(item){
+                subtotal += parseFloat( item.get('price') );
+            });
+            return subtotal;
+        },
+        getTax: function() {
+            var tax = 0;
+            _.each(this.items.models, function(item){
+                tax += parseFloat( item.get('tax') );
+            });
+            return tax;
+        },
+        getTotal: function() {
+            return this.getSubTotal() + this.getTax();
+        }
+    });
+    
+    // Function that will be fired after store page is ready
+    var afterStorePageRender = function() {
+        // Initializing shelf view
+        app.viewsFactory.shelfView = new ShelfView();
+        app.viewsFactory.shelfView.currentCategory = app.menuFactory.menuCollection.models[0];
+        app.viewsFactory.shelfView.currentItems.set( app.viewsFactory.shelfView.currentCategory.get('items') );
+        app.viewsFactory.shelfView.render();
+        // Initializing cart view
+        app.viewsFactory.cartView = new CartView();
+        app.viewsFactory.cartView.render();
+    };
+    
+    
+    app.router.on('route:store', function(){
+        app.viewsFactory.storePage.render();
+    });
+
 })(storeApp);

@@ -2,10 +2,13 @@
 
 Store application with AngularJS
 
-### npm Packages ###
+### Libraries ###
 
-* grunt
-* grunt-contrib-concat
-* grunt-contrib-less
-* grunt-contrib-watch
-* grunt-serve
+* AngularJS - 123 Kb
+* Angular UI Router - 28.2 Kb
+
+Libraries: 151.2 Kb
+
+Application code - 8 Kb
+
+Total: 159.2 Kb

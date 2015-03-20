@@ -1,11 +1,15 @@
-#Store app - AngularJS#
+#Store app - BackboneJS#
 
-Store application with AngularJS
+Store application with BackboneJS
 
-### npm Packages ###
+### Libraries ###
 
-* grunt
-* grunt-contrib-concat
-* grunt-contrib-less
-* grunt-contrib-watch
-* grunt-serve
+* BackboneJS - 19.8 Kb
+* jQuery - 82.6 Kb
+* Underscore - 16.4 Kb
+
+Libraries: 118.8 Kb
+
+Application code - 6.1 Kb
+
+Total: 124.9 Kb

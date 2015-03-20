@@ -1,4 +1,4 @@
-/*global Backbone, _, $, console*/
+/*global Backbone, _, $, console, router*/
 
 $.fn.serializeObject = function() {
     var o = {};
@@ -49,6 +49,7 @@ app.UserList = Backbone.View.extend({
 
 app.EditUser = Backbone.View.extend({
     el: '.page',
+    currentUser: null,
     render: function(options) {
         var that = this;
         var template = _.template( $('#user-edit-template').html() );
@@ -62,20 +63,20 @@ app.EditUser = Backbone.View.extend({
                 }
             });
             */
-            var currentUser = app.usersCollection.get(options.id);
-            that.$el.html( template({user: currentUser}) );
+            that.currentUser = app.usersCollection.get(options.id);
+            that.$el.html( template({user: that.currentUser}) );
         } else {
             that.$el.html( template( {user: null} ) );
         }
     },
     events: {
-        'submit .edit-user-form': 'saveUser'
+        'submit .edit-user-form': 'saveUser',
+        'click .delete': 'deleteUser'
     },
     saveUser: function (ev) {
-        ev.preventDefault();
         var userDetails = $(ev.currentTarget).serializeObject();
         /*
-        // If you want t send data to the server you need to use following code
+        // If you want to send data to the server you need to use following code
         // It also will add new data to users collection
         var user = new User();
         user.save(userDetails, {
@@ -86,6 +87,20 @@ app.EditUser = Backbone.View.extend({
         */
         app.usersCollection.set(userDetails,{remove: false});
         app.router.navigate('', {trigger: true});
+        return false;
+    },
+    deleteUser: function(ev) {
+        /*
+        // In order to delete user frm the erver you may wan to send DELETE request
+        this.currentUser.destroy({
+            success: function() {
+                router.navigate('', {trigger: true});
+            }
+        });
+        */
+        this.currentUser.trigger('destroy', this.currentUser);
+        app.router.navigate('', {trigger: true});
+        return false;
     }
 });
 

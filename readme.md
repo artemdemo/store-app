@@ -2,17 +2,12 @@
 
 Creating store application with different frameworks
 
-Frameworks:
+### Application by used technology ###
 * AngularJS
 * ReactJS
 * Backbone
 * EmberJS
-* WinJS
 
-
-Tools:
-* Coffeescript (AnglarJS)
-* TypeScript
 
 Menu was created with help of http://www.json-generator.com/<br>
 This is the code:
@@ -44,5 +39,12 @@ This is the code:
   }
 ]
 ```
+
+### How to start ###
+The easiest way is to run
+```
+$ grunt serve
+```
+from the main directory /store-app
 
 ![alt tag](https://github.com/artemdemo/store-app/blob/master/_img/store-app.png)

@@ -1,1 +1,1 @@
-This folder containc experiments end test documentation in order to understand how the hell Backbone works.
+This folder contain experiments end test documentation in order to understand how the hell Backbone works.

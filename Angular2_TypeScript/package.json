@@ -1,0 +1,13 @@
+{
+  "name": "Angular2_TypeScript",
+  "version": "0.1.0",
+  "description": "Angular2 ith TypeScript",
+  "main": "index.js",
+  "author": "Artem Demo",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-shell": "~1.1.2",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-less": "~1.0.0"
+  }
+}

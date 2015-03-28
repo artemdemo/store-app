@@ -5,7 +5,6 @@
 $ npm install
 ```
 
-
 **build:**
 Just run the grunt and it will build everything
 ```
@@ -24,3 +23,11 @@ Sublime Text packages folder default location:
 -	OS X: ~/Library/Application Support/Sublime Text 3
 -	Linux: ~/.Sublime Text 2
 -	Linux: ~/.Sublime Text 3
+
+### Router ###
+
+https://github.com/angular/router
+
+
+PS<br>
+By the way, there is example of much shorter version of filestructure here: https://github.com/davideast/ng2do

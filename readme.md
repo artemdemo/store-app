@@ -6,7 +6,7 @@ Creating store application with different frameworks
 * AngularJS
 * ReactJS
 * Backbone
-* EmberJS
+* EmberJS (work in progress)
 
 
 Menu was created with help of http://www.json-generator.com/<br>

@@ -95,7 +95,7 @@
          * 
          * @function getSubTotal
          * @memberof cartFactory
-         * @return {Float}
+         * @return {number}
          */
         cartFactory.getSubTotal = function() {
             var subtotal = 0;
@@ -110,7 +110,7 @@
          * 
          * @function getTax
          * @memberof cartFactory
-         * @return {Float}
+         * @return {number}
          */
         cartFactory.getTax = function() {
             var tax = 0;
@@ -125,7 +125,7 @@
          * 
          * @function getTotal
          * @memberof cartFactory
-         * @return {Float}
+         * @return {number}
          */
         cartFactory.getTotal = function() {
             var tax = cartFactory.getTax();

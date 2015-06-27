@@ -2,10 +2,14 @@
 /// <reference path="typings/custom.d.ts" />
 /// <reference path="vendor/fetch/fetch.d.ts" />
 
-import {Component, View, bootstrap, bind} from 'angular2/angular2';
+import {Component, View, bootstrap} from 'angular2/angular2';
 import {routerInjectables, Router, RouterOutlet, RouterLink, RouteConfig} from 'angular2/router';
+import { RootRouter } from 'angular2/src/router/router';
+import { bind } from 'angular2/di';
+import { Pipeline } from 'angular2/src/router/pipeline';
 
 import {Home} from './components';
+import {Store} from './components';
 
 /**
  * Store component
@@ -29,11 +33,16 @@ import {Home} from './components';
     {
         path: '/',
         redirectTo: '/home'
-        //component: Home
     },
     {
         path: '/home',
-        component: Home
+        component: Home,
+        as: 'home'
+    },
+    {
+        path: '/store',
+        component: Store,
+        as: 'store'
     },
 ])
 export class AppComponent {
@@ -52,6 +61,8 @@ export class AppComponent {
             .catch((error) => {
                 console.log(error.message);
             });
+
+        console.log( router );
 
     }
 }

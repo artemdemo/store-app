@@ -10,16 +10,13 @@ import {routerInjectables, Router, RouterOutlet, RouterLink, RouteConfig} from '
  * Main component of the application
  */
 @Component({
-    selector: 'home'
+    selector: 'store'
 })
 @View({
     template: `
-    <div class="home-page">
+    <div class="store-page">
 
-        <div class="container">
-            <h1>Start shopping now</h1>
-            <button (click)="openStore()">Enter Store</button>
-        </div>
+
 
     </div>
     `,
@@ -28,7 +25,7 @@ import {routerInjectables, Router, RouterOutlet, RouterLink, RouteConfig} from '
         RouterLink
     ]
 })
-export class Home {
+export class Store {
 
     router;
 
@@ -37,7 +34,7 @@ export class Home {
     }
 
     openStore() {
-        this.router.navigate('/store');
+        this.router.navigate('/home');
         console.log( this.router );
     }
 }

@@ -18,28 +18,28 @@ var router_1 = require('angular2/router');
  * Store component
  * Main component of the application
  */
-var Home = (function () {
-    function Home(router) {
+var Store = (function () {
+    function Store(router) {
         this.router = router;
     }
-    Home.prototype.openStore = function () {
-        this.router.navigate('/store');
+    Store.prototype.openStore = function () {
+        this.router.navigate('/home');
         console.log(this.router);
     };
-    Home = __decorate([
+    Store = __decorate([
         angular2_1.Component({
-            selector: 'home'
+            selector: 'store'
         }),
         angular2_1.View({
-            template: "\n    <div class=\"home-page\">\n\n        <div class=\"container\">\n            <h1>Start shopping now</h1>\n            <button (click)=\"openStore()\">Enter Store</button>\n        </div>\n\n    </div>\n    ",
+            template: "\n    <div class=\"store-page\">\n\n\n\n    </div>\n    ",
             directives: [
                 router_1.RouterOutlet,
                 router_1.RouterLink
             ]
         }), 
         __metadata('design:paramtypes', [router_1.Router])
-    ], Home);
-    return Home;
+    ], Store);
+    return Store;
 })();
-exports.Home = Home;
-//# sourceMappingURL=Home.js.map
+exports.Store = Store;
+//# sourceMappingURL=Store.js.map

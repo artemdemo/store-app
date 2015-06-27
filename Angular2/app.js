@@ -15,6 +15,7 @@ if (typeof __metadata !== "function") __metadata = function (k, v) {
 var angular2_1 = require('angular2/angular2');
 var router_1 = require('angular2/router');
 var components_1 = require('./components');
+var components_2 = require('./components');
 /**
  * Store component
  * Main component of the application
@@ -33,6 +34,7 @@ var AppComponent = (function () {
             .catch(function (error) {
             console.log(error.message);
         });
+        console.log(router);
     }
     AppComponent = __decorate([
         angular2_1.Component({
@@ -52,7 +54,13 @@ var AppComponent = (function () {
             },
             {
                 path: '/home',
-                component: components_1.Home
+                component: components_1.Home,
+                as: 'home'
+            },
+            {
+                path: '/store',
+                component: components_2.Store,
+                as: 'store'
             },
         ]), 
         __metadata('design:paramtypes', [router_1.Router])

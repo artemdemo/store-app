@@ -4,6 +4,7 @@
 
 declare module 'angular2/di' {
     var Inject: any;
+    var bind: any;
 }
 
 declare module 'angular2/render' {
@@ -102,6 +103,10 @@ declare module 'angular2/src/facade/lang' {
     function isPresent(obj: any): boolean;
     function isFunction(obj: any): boolean;
     function isString(obj: any): boolean;
+}
+
+declare module 'angular2/src/router/router' {
+    var RootRouter: any;
 }
 
 declare module "angular2/annotations" {
@@ -211,7 +216,7 @@ declare module 'angular2/router' {
     class Instruction {}
     class Router {
         navigate(url: string): Promise<any>;
-        config(config: any): Promise<any>;
+        config(config: any, component?: any): Promise<any>;
         subscribe(onNext: Function): Promise<any>;
     }
     class Location {
@@ -221,6 +226,10 @@ declare module 'angular2/router' {
     var RouterLink: any;
     var routerInjectables: any;
     var RouteConfig: any;
+}
+
+declare module 'angular2/src/router/pipeline' {
+    var Pipeline: any;
 }
 
 

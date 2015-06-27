@@ -4,9 +4,9 @@ Creating store application with different frameworks
 
 ### Application by used technology
 * AngularJS
-* Angular 2
 * ReactJS
 * Backbone
+* Angular 2 (work in progress)
 * EmberJS (work in progress)
 
 

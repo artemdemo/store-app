@@ -3,7 +3,7 @@
 Store application with ReactJS.
 
 ReactJS was created to render interfaces.
-It don't really know how to handle one pagee applicaion logic.
+It don't really know how to handle one page application logic.
 As result - it has no routing. If you want one page application you need to use something else.
 
 ### Libraries ###

@@ -14,12 +14,13 @@ if (typeof __metadata !== "function") __metadata = function (k, v) {
 };
 var angular2_1 = require('angular2/angular2');
 var router_1 = require('angular2/router');
+var components_1 = require('./components');
 /**
  * Store component
  * Main component of the application
  */
-var StoreComponent = (function () {
-    function StoreComponent(router) {
+var AppComponent = (function () {
+    function AppComponent(router) {
         fetch('../menu.json', {
             method: 'GET'
         })
@@ -33,18 +34,33 @@ var StoreComponent = (function () {
             console.log(error.message);
         });
     }
-    StoreComponent = __decorate([
+    AppComponent = __decorate([
         angular2_1.Component({
-            selector: 'store'
+            selector: 'app'
         }),
         angular2_1.View({
-            template: "\n    <div class=\"home-page\">\n\n        <div class=\"container\">\n            <h1>Start shopping now</h1>\n            <button>Enter Store</button>\n        </div>\n\n    </div>\n    "
-        }), 
+            template: "\n    <div id=\"mainContainer\">\n        <router-outlet></router-outlet>\n    </div>\n    ",
+            directives: [
+                router_1.RouterOutlet,
+                router_1.RouterLink
+            ]
+        }),
+        router_1.RouteConfig([
+            {
+                path: '/',
+                redirectTo: '/home'
+            },
+            {
+                path: '/home',
+                component: components_1.Home
+            },
+        ]), 
         __metadata('design:paramtypes', [router_1.Router])
-    ], StoreComponent);
-    return StoreComponent;
+    ], AppComponent);
+    return AppComponent;
 })();
-angular2_1.bootstrap(StoreComponent, [
+exports.AppComponent = AppComponent;
+angular2_1.bootstrap(AppComponent, [
     router_1.routerInjectables
 ]);
 //# sourceMappingURL=app.js.map

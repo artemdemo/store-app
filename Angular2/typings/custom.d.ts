@@ -168,7 +168,7 @@ declare module "angular2/forms" {
     class NgModel {}
     class NgRequiredValidator {}
     class FormBuilder {
-        group(controls: any): any
+        group(controls: any): any;
         controls: any;
     }
     class AbstractControl {

@@ -3,28 +3,40 @@
 /// <reference path="vendor/fetch/fetch.d.ts" />
 
 import {Component, View, bootstrap, bind} from 'angular2/angular2';
-import {routerInjectables, Router, RouterOutlet, RouterLink} from 'angular2/router';
+import {routerInjectables, Router, RouterOutlet, RouterLink, RouteConfig} from 'angular2/router';
+
+import {Home} from './components';
 
 /**
  * Store component
  * Main component of the application
  */
 @Component({
-    selector: 'store'
+    selector: 'app'
 })
 @View({
     template: `
-    <div class="home-page">
-
-        <div class="container">
-            <h1>Start shopping now</h1>
-            <button>Enter Store</button>
-        </div>
-
+    <div id="mainContainer">
+        <router-outlet></router-outlet>
     </div>
-    `
+    `,
+    directives: [
+        RouterOutlet,
+        RouterLink
+    ]
 })
-class StoreComponent {
+@RouteConfig([
+    {
+        path: '/',
+        redirectTo: '/home'
+        //component: Home
+    },
+    {
+        path: '/home',
+        component: Home
+    },
+])
+export class AppComponent {
 
     constructor( router: Router ) {
 
@@ -44,6 +56,6 @@ class StoreComponent {
     }
 }
 
-bootstrap(StoreComponent, [
+bootstrap(AppComponent, [
     routerInjectables
 ]);

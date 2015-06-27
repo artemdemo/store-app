@@ -1,9 +1,10 @@
-#Store app#
+# Store app
 
 Creating store application with different frameworks
 
-### Application by used technology ###
+### Application by used technology
 * AngularJS
+* Angular 2
 * ReactJS
 * Backbone
 * EmberJS (work in progress)
@@ -40,11 +41,14 @@ This is the code:
 ]
 ```
 
-### How to start ###
+### How to start
 The easiest way is to run
 ```
+$ npm install
 $ grunt serve
 ```
 from the main directory /store-app
+
+Then go to http://localhost:9000/
 
 ![alt tag](https://github.com/artemdemo/store-app/blob/master/_img/store-app.png)

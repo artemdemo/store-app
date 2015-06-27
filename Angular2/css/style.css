@@ -176,3 +176,6 @@ ul {
   border: 0;
   font-size: 21px;
 }
+[hidden] {
+  display: none;
+}

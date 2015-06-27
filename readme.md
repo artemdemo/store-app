@@ -6,6 +6,7 @@ Creating store application with different frameworks
 * AngularJS
 * ReactJS
 * Backbone
+* TypeScript
 * Angular 2 (work in progress)
 * EmberJS (work in progress)
 

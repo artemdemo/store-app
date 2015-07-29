@@ -1,13 +1,6 @@
 /*global module, require*/
 module.exports = function(grunt) {
 
-    var path = require('path');
-
-    var infoBanner = '/**!\n' +
-					 ' * <%= pkg.name %> \n' +
-					 ' * @version: <%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-					 ' */\n';
-
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         less: {
@@ -22,22 +15,31 @@ module.exports = function(grunt) {
             }
         },
         react: {
-          dynamic_mappings: {
-            files: [
-              {
-                expand: true,
-                cwd: 'components',
-                src: ['**/*.jsx'],
-                dest: 'js',
-                ext: '.js'
-              }
-            ]
+            combined_file_output: {
+            files: {
+                'js/app.js': [
+                    'components/vendor/EventEmitter.min.js',
+                    'components/home/home.jsx',
+                    'components/store/MenuService.jsx',
+                    'components/store/StoreService.jsx',
+                    'components/store/store-bootstrap.jsx',
+                    'components/store/shelf.jsx',
+                    'components/store/cart.jsx'
+                ]
+            }
           }
         },
         watch: {
             "styles": {
-                "files": [ "less/*.less", "components/*.jsx" ],
-                "tasks": ["less", "react"],
+                "files": [ "less/*.less" ],
+                "tasks": ["less"],
+                "options": {
+                    "nospawn": true
+                }
+            },
+            "scripts": {
+                "files": [ "components/**/*.jsx" ],
+                "tasks": ["react"],
                 "options": {
                     "nospawn": true
                 }

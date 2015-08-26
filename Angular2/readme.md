@@ -4,4 +4,4 @@ Today developing in Angular 2 is like searching for a black cat in a dark room, 
 
 ### Useful links
 
-https://github.com/rolandjitsu/ng2-play
+https://github.com/thelgevold/angular-2-samples

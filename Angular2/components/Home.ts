@@ -1,6 +1,4 @@
-/// <reference path="../typings/angular2/angular2.d.ts" />
-/// <reference path="../typings/custom.d.ts" />
-/// <reference path="../vendor/fetch/fetch.d.ts" />
+/// <reference path="../typings/tsd.d.ts" />
 
 import {Component, View, bootstrap, bind} from 'angular2/angular2';
 import {routerInjectables, Router, RouterOutlet, RouterLink, RouteConfig} from 'angular2/router';
@@ -38,6 +36,5 @@ export class Home {
 
     openStore() {
         this.router.navigate('/store');
-        console.log( this.router );
     }
 }

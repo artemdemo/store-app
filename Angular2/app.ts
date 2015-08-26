@@ -1,12 +1,9 @@
-/// <reference path="typings/angular2/angular2.d.ts" />
-/// <reference path="typings/custom.d.ts" />
-/// <reference path="vendor/fetch/fetch.d.ts" />
+/// <reference path="typings/tsd.d.ts" />
 
-import {Component, View, bootstrap} from 'angular2/angular2';
-import {routerInjectables, Router, RouterOutlet, RouterLink, RouteConfig} from 'angular2/router';
-import { RootRouter } from 'angular2/src/router/router';
-import { bind } from 'angular2/di';
-import { Pipeline } from 'angular2/src/router/pipeline';
+import { Component, View, bootstrap, bind } from 'angular2/angular2';
+import { Http, httpInjectables } from "angular2/angular2";
+import { RouteConfig, RouterOutlet, Router, RouterLink } from 'angular2/router';
+import { routerInjectables, LocationStrategy, Location, HashLocationStrategy } from 'angular2/router';
 
 import {Home} from './components';
 import {Store} from './components';
@@ -16,6 +13,7 @@ import {Store} from './components';
  * Main component of the application
  */
 @Component({
+    appInjector: [httpInjectables],
     selector: 'app'
 })
 @View({
@@ -24,16 +22,10 @@ import {Store} from './components';
         <router-outlet></router-outlet>
     </div>
     `,
-    directives: [
-        RouterOutlet,
-        RouterLink
-    ]
+    directives: [RouterOutlet]
 })
 @RouteConfig([
-    {
-        path: '/',
-        redirectTo: '/home'
-    },
+    { path: '/', redirectTo: '/home' },
     {
         path: '/home',
         component: Home,
@@ -47,26 +39,19 @@ import {Store} from './components';
 ])
 export class AppComponent {
 
-    constructor( router: Router ) {
+    constructor( http:Http ) {
 
-        fetch('../menu.json', {
-            method: 'GET'
-        })
-            .then((response) => {
-                return ( <any> response).json();
-            })
-            .then((json) => {
-                console.log( json );
-            })
-            .catch((error) => {
-                console.log(error.message);
+        http.get('../menu.json')
+            .toRx()
+            .subscribe(res => {
+                console.log(res.json());
             });
-
-        console.log( router );
 
     }
 }
 
 bootstrap(AppComponent, [
-    routerInjectables
+    httpInjectables,
+    routerInjectables,
+    bind(LocationStrategy).toClass(HashLocationStrategy) // This part will be gone in post alpha
 ]);

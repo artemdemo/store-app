@@ -42,9 +42,13 @@ export class AppComponent {
     constructor( http:Http ) {
 
         http.get('../menu.json')
+            // Get the RxJS Subject
             .toRx()
-            .subscribe(res => {
-                console.log(res.json());
+            // Call map on the response observable to get the parsed object
+            .map(res => res.json())
+            // Subscribe to the observable to get the parsed object
+            .subscribe(data => {
+                console.log(data);
             });
 
     }

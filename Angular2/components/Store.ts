@@ -1,7 +1,7 @@
 /// <reference path="../typings/tsd.d.ts" />
 
-import {Component, View, bootstrap, bind} from 'angular2/angular2';
-import {routerInjectables, Router, RouterOutlet, RouterLink, RouteConfig} from 'angular2/router';
+import { Component, View } from 'angular2/angular2';
+import { Router, RouterOutlet, RouterLink } from 'angular2/router';
 
 /**
  * Store component

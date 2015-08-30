@@ -24,8 +24,9 @@ var AppComponent = (function () {
     function AppComponent(http) {
         http.get('../menu.json')
             .toRx()
-            .subscribe(function (res) {
-            console.log(res.json());
+            .map(function (res) { return res.json(); })
+            .subscribe(function (data) {
+            console.log(data);
         });
     }
     AppComponent = __decorate([

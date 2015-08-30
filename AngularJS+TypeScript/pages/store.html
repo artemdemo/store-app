@@ -1,0 +1,74 @@
+<div class="store-page" ng-controller="storeCtrl as store">
+
+    <div class="container clearRow">
+        
+        <div class="shelfContainer">
+            <div class="categoriesContainer">
+                <ul class="list clearRow">
+                    <li class="item"
+                        ng-class="{ 'active' : store.checkActiveCategory(cat) }"
+                        ng-repeat="cat in store.menu track by cat.id"
+                        ng-click="store.selectCategory(cat)">
+                        {{ cat.category }}
+                    </li>
+                </ul>
+            </div>
+            <div class="itemsContainer">
+                <ul class="list">
+                    <li class="item clearRow"
+                        ng-repeat="item in store.currentCategory.items track by item.id"
+                        ng-click="store.addItem(item)">
+                        <div class="clearRow">
+                            <div class="name left">{{ item.name }}</div>
+                            <div class="price right">{{ item.price | currency }}</div>
+                        </div>
+                        <div class="description muted-text">{{ item.description }}</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="cartContainer" ng-controller="cartCtrl as cartC">
+            <h1>Your Cart</h1>
+            <div class="cartItemsContainer">
+                <div class="muted-text center"
+                     ng-hide="cartC.itemsCount">There are no items in the cart</div>
+                <ul class="list">
+                    <li class="item clearRow"
+                        ng-repeat="item in cartC.cart.items track by item._uniqueID">
+                        <div class="name left">{{ item.name }}</div>
+                        <div class="price right">
+                            {{ item.price | currency }}
+                            <span class="remove"
+                                  ng-click="cartC.removeItem(item)">x</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="cartTotalsContainer">
+                <div class="clearRow line subtotal">
+                    <div class="title left">Subtotal:</div>
+                    <div class="amount right">{{ cartC.subtotal | currency }}</div>
+                </div>
+                <div class="clearRow line tax">
+                    <div class="title left">Tax:</div>
+                    <div class="amount right">{{ cartC.tax | currency }}</div>
+                </div>
+                <div class="clearRow line total">
+                    <div class="title left">Total:</div>
+                    <div class="amount right">{{ cartC.total | currency }}</div>
+                </div>
+            </div>
+            
+            <div class="checkoutContainer">
+                <button class="checkout"
+                        ng-click="cartC.checkout()">
+                    Checkout
+                </button>
+            </div>
+        </div>
+        
+    </div>
+
+</div>

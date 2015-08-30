@@ -1,0 +1,14 @@
+{
+  "name": "angularjs-typescript",
+  "version": "1.0.0",
+  "description": "Store application with AngularJS + TypeScript",
+  "main": "index.html",
+  "author": "Artem Demo",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-less": "^3.0.3",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-typescript": "^2.8.1"
+  }
+}

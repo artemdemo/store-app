@@ -78,7 +78,7 @@ var storeApp = angular.module("storeApp", ["ui.router"]);
          *
          * @type {Object}
          */
-        $scope.selectCategoty = function(cat) { $scope.currentCategory = cat; };
+        $scope.selectCategory = function(cat) { $scope.currentCategory = cat; };
         
         /**
          * Checking if current category in ng-repeat is active

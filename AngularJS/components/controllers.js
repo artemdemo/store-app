@@ -51,7 +51,7 @@
          *
          * @type {Object}
          */
-        $scope.selectCategoty = function(cat) { $scope.currentCategory = cat; };
+        $scope.selectCategory = function(cat) { $scope.currentCategory = cat; };
         
         /**
          * Checking if current category in ng-repeat is active
@@ -70,7 +70,7 @@
          *
          * @function addItem
          * @memberof storeCtrl
-         * @param cat {Object} - Category
+         * @param item {Object} - Item
          * @return {Boolean}
          */
         $scope.addItem = function(item) {

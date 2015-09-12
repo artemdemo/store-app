@@ -7,20 +7,17 @@ define(
 
         return (function(){
 
-            var cartItems;
-
-            function createInstance() {
-                var Collection = Backbone.Collection.extend({
-                    model: Item
-                });
-                return new Collection;
-            }
+            var collection = Backbone.Collection.extend({
+                model: Item
+            });
 
             return (function () {
-                if (!cartItems) {
-                    cartItems = createInstance();
-                }
-                return cartItems;
+                var cartItems;
+
+                return (function(){
+                    cartItems = cartItems || new collection;
+                    return cartItems;
+                })();
             })()
 
         })()

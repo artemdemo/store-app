@@ -7,22 +7,21 @@ define(
 
         return (function(){
 
-            var menu;
-
-            function createInstance() {
-                var Collection = Backbone.Collection.extend({
-                    url: '../menu.json',
-                    model: Category
-                });
-                return new Collection;
-            }
+            var collection = Backbone.Collection.extend({
+                url: '../menu.json',
+                model: Category
+            });
 
             return (function () {
-                if (!menu) {
-                    menu = createInstance();
-                    menu.fetch();
-                }
-                return menu;
+                var menu;
+
+                return (function(){
+                    if (!menu) {
+                        menu = new collection;
+                        menu.fetch();
+                    }
+                    return menu;
+                })();
             })()
 
         })()

@@ -4,7 +4,7 @@ var storeApp = {
     viewsFactory: {
         mainContainer: '#mainContainer'
     },
-    menuFactory: {},
+    menuFactory: {}
 };
 
 storeApp.menuFactory.Category = Backbone.Model.extend({

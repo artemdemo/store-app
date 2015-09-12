@@ -56,7 +56,8 @@
         addItemToCart: function(ev) {
             var itemId = ev.currentTarget.dataset.itemId;
             var item = this.currentItems.get(itemId).toJSON();
-            // I need to change ID, otherise I can't add two identical items
+
+            // I need to change ID, otherwise I can't add two identical items
             item.id = (new Date()).getTime();
             item.menuId = itemId;
             app.viewsFactory.cartView.items.add(item);

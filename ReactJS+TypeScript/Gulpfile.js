@@ -16,10 +16,11 @@ gulp.task('ts', function() {
 
 gulp.task('browserify', ['ts'], function() {
     return gulp.src('js/tmp/app.js')
-        .pipe(browserify({
-
-        }))
-        .pipe(gulp.dest('js'));
+        .pipe(browserify({}))
+        .pipe(gulp.dest('js'))
+        .pipe(shell([
+            'rm -rf js/tmp'
+        ]));
 });
 
 gulp.task('less', function () {

@@ -1,2 +1,0 @@
-var MAIN_CONTAINER_ID = 'mainContainer';
-exports.MAIN_CONTAINER_ID = MAIN_CONTAINER_ID;

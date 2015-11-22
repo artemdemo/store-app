@@ -18,7 +18,7 @@ var Home = (function (_super) {
         ReactDOM.unmountComponentAtNode(document.getElementById(constants_1.MAIN_CONTAINER_ID));
     };
     Home.prototype.render = function () {
-        return (React.createElement("div", {"className": "home-page"}, React.createElement("div", {"className": "container"}, React.createElement("h1", null, "Start shopping now"), React.createElement("button", {"onClick": this.openStore, "className": "button"}, "Enter Store"))));
+        return (React.createElement("div", {"className": "home-page"}, React.createElement("div", {"className": "container"}, React.createElement("h1", null, "Start shopping now"), React.createElement("button", {"onClick": this.openStore, "className": "button"}, "Enter 1 Store"))));
     };
     return Home;
 })(React.Component);

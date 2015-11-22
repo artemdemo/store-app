@@ -14,7 +14,7 @@ gulp.task('ts', function() {
         .js.pipe(gulp.dest('js/tmp'));
 });
 
-gulp.task('browserify', function() {
+gulp.task('browserify', ['ts'], function() {
     return gulp.src('js/tmp/app.js')
         .pipe(browserify({
 
@@ -29,7 +29,7 @@ gulp.task('less', function () {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('./source/**/*.ts', ['ts', 'browserify']);
+    gulp.watch('./source/**/*.tsx', ['ts', 'browserify']);
     gulp.watch('./source/less/*.less', ['less']);
 });
 

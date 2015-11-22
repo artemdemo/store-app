@@ -56,3 +56,4 @@ Then go to http://localhost:9000/
 Keep in mind that each project has it's own node_modules, therefore you nee to run "$ npm install" in each directory if you want to make some changes.
 
 ![alt tag](https://github.com/artemdemo/store-app/blob/master/_img/store-app.png)
+

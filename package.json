@@ -2,9 +2,13 @@
   "name": "store-app",
   "version": "0.1.0",
   "description": "Store application",
+  "scripts": {
+    "start": "grunt serve"
+  },
   "author": "Artem Demo",
   "devDependencies": {
     "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
     "grunt-serve": "^0.1.6"
   }
 }

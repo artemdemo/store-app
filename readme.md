@@ -47,7 +47,7 @@ This is the code:
 The easiest way is to run
 ```
 $ npm install
-$ grunt serve
+$ npm run start
 ```
 from the main directory /store-app
 

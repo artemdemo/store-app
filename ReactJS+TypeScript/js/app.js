@@ -18,7 +18,7 @@ var Home = (function (_super) {
         ReactDOM.unmountComponentAtNode(document.getElementById(constants_1.MAIN_CONTAINER_ID));
     };
     Home.prototype.render = function () {
-        return (React.createElement("div", {"className": "home-page"}, React.createElement("div", {"className": "container"}, React.createElement("h1", null, "Start shopping now"), React.createElement("button", {"onClick": this.openStore, "className": "button"}, "Enter 1 Store"))));
+        return (React.createElement("div", {"className": "home-page"}, React.createElement("div", {"className": "container"}, React.createElement("h1", null, "Start shopping now"), React.createElement("button", {"onClick": this.openStore, "className": "button"}, "Enter Store"))));
     };
     return Home;
 })(React.Component);
@@ -31,6 +31,7 @@ exports.MAIN_CONTAINER_ID = MAIN_CONTAINER_ID;
 },{}],3:[function(require,module,exports){
 /// <reference path="d.ts/react/react.d.ts" />
 /// <reference path="d.ts/react/react-dom.d.ts" />
+/// <reference path="d.ts/react-router/react-router.d.ts" />
 var React = require('react');
 var ReactDOM = require('react-dom');
 var home_1 = require('./components/home');

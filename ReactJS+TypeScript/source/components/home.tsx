@@ -4,7 +4,7 @@
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Router, Route, Link } from 'react-router'
+import { Link } from 'react-router'
 import { MAIN_CONTAINER_ID } from '../constants';
 
 interface IHomeProps {}

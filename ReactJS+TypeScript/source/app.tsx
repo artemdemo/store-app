@@ -7,8 +7,12 @@ import * as ReactDOM from 'react-dom';
 import { Router, Route, Link } from 'react-router'
 
 import {Home} from './components/home';
+import {Store} from './components/store';
 import {MAIN_CONTAINER_ID} from './constants';
 
 ReactDOM.render(
-	<Home />,
+	<Router>
+		<Route path="store" component={Store}/>
+		<Route path="*" component={Home}/>
+	</Router>,
 	document.getElementById(MAIN_CONTAINER_ID));

@@ -1,8 +1,10 @@
 /// <reference path="../d.ts/react/react.d.ts" />
 /// <reference path="../d.ts/react/react-dom.d.ts" />
+/// <reference path="../d.ts/react-router/react-router.d.ts" />
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { Router, Route, Link } from 'react-router'
 import { MAIN_CONTAINER_ID } from '../constants';
 
 interface IHomeProps {}
@@ -16,16 +18,12 @@ export class Home extends React.Component<IHomeProps, IHomeStats> {
         super(props);
     }
 
-    public openStore () {
-        ReactDOM.unmountComponentAtNode(document.getElementById(MAIN_CONTAINER_ID));
-    }
-
     public render () {
         return (
             <div className="home-page">
                 <div className="container">
                     <h1>Start shopping now</h1>
-                    <button onClick={this.openStore} className="button">Enter Store</button>
+                    <Link to={`/store`} className="button">Enter Store</Link>
                 </div>
             </div>
         );

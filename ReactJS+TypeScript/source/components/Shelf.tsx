@@ -8,39 +8,54 @@ import {MAIN_CONTAINER_ID} from '../constants';
 import {ShelfStore, ICategory, IItem} from '../stores/ShelfStore';
 import {StoreAction} from '../actions/StoreAction';
 import {SingleCategory} from '../components/SingleCategory';
+import {SingleProduct} from '../components/SingleProduct';
 
 interface IShelfProps {}
 interface IShelfStats {
     items: IItem[]
 }
 
+
 export class Shelf extends React.Component<IShelfProps, IShelfStats> {
 
-    public state: any;
+    public state: IShelfStats;
 
     constructor(props: IShelfProps) {
         super(props);
+        this.state = {
+            items: []
+        };
         StoreAction.loadItems();
     }
 
-    private onChange() {}
+    private updateShelf(): void {
+        let category: ICategory = ShelfStore.getCurrentCategory();
+        this.setState({
+            items: category.items
+        });
+    }
 
     public componentDidMount(): void {
-        ShelfStore.on('change', this.onChange);
+        ShelfStore.on('change-category', this.updateShelf.bind(this));
     }
 
     public componentWillUnmount(): void {
-        ShelfStore.removeListener('change', this.onChange);
+        ShelfStore.removeListener('change-category', this.updateShelf.bind(this));
     }
 
     public renderCategoryItems() {
         return ShelfStore.getMenu().map((category: ICategory, i: number) => {
-            var id = String(category.id) + i;
+            let id = String(category.id) + i;
             return <SingleCategory key={id} cat={category} />;
         })
     }
 
-    public renderProducts() {}
+    public renderProducts() {
+        return this.state.items.map((product: IItem, i: number) => {
+            let id = String(product.id) + i;
+            return <SingleProduct key={id} product={product} />;
+        })
+    }
 
     public render() {
         return (

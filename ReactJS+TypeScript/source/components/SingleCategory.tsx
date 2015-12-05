@@ -18,8 +18,13 @@ interface ISingleCategoryStats {
 
 export class SingleCategory extends React.Component<ISingleCategoryProps, ISingleCategoryStats> {
 
+    public state: ISingleCategoryStats;
+
     constructor(props: ISingleCategoryProps) {
         super(props);
+        this.state = {
+            active: false
+        }
     }
 
     private toggleCategory(): void {

@@ -56,6 +56,8 @@ class ShelfStoreClass extends EventEmitter {
         axios.get(this.menuUrl)
             .then((response) => {
                 this.menu = response.data;
+                this.currentCategory = response.data[0];
+                this.emit('change-category');
                 console.log(response.data);
             })
             .catch((response) => {

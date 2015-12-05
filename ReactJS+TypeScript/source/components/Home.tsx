@@ -4,7 +4,8 @@
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
+
 import { MAIN_CONTAINER_ID } from '../constants';
 
 interface IHomeProps {}
@@ -14,11 +15,11 @@ export class Home extends React.Component<IHomeProps, IHomeStats> {
 
     public state: any;
 
-    constructor (props: any) {
+    constructor(props: any) {
         super(props);
     }
 
-    public render () {
+    public render() {
         return (
             <div className="home-page">
                 <div className="container">

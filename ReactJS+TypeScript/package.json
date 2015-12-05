@@ -8,6 +8,9 @@
   },
   "author": "Artem Demo",
   "devDependencies": {
+    "axios": "^0.7.0",
+    "es6-promise": "^3.0.2",
+    "eventemitter3": "^1.1.1",
     "flux": "^2.1.1",
     "gulp": "^3.9.0",
     "gulp-browserify": "^0.5.1",

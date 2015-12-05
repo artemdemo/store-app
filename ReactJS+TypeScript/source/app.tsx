@@ -5,11 +5,11 @@
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Router, Route, Link } from 'react-router'
-import { createHashHistory } from 'history';
+import {Router, Route, Link} from 'react-router'
+import {createHashHistory} from 'history';
 
-import {Home} from './components/home';
-import {Store} from './components/store';
+import {Home} from './components/Home';
+import {Store} from './components/Store';
 import {MAIN_CONTAINER_ID} from './constants';
 
 /**

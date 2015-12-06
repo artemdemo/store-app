@@ -4,7 +4,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import {ShelfStore, IItem} from "../stores/ShelfStore";
+import {ShelfStore, IItem} from '../stores/ShelfStore';
 import {StoreAction} from '../actions/StoreAction';
 
 interface ISingleCartProductProps {

@@ -179,7 +179,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var React = require('react');
-var ShelfStore_1 = require("../stores/ShelfStore");
+var ShelfStore_1 = require('../stores/ShelfStore');
 var StoreAction_1 = require('../actions/StoreAction');
 var SingleCartProduct = (function (_super) {
     __extends(SingleCartProduct, _super);
@@ -330,7 +330,9 @@ var react_router_1 = require('react-router');
 var history_1 = require('history');
 var Home_1 = require('./components/Home');
 var Store_1 = require('./components/Store');
+var ShelfStore_1 = require('./stores/ShelfStore');
 var constants_1 = require('./constants');
+ShelfStore_1.ShelfStore.loadStoreItems();
 /**
  * Thing about the history
  *
@@ -345,7 +347,7 @@ var constants_1 = require('./constants');
  */
 ReactDOM.render(React.createElement(react_router_1.Router, {"history": history_1.createHashHistory({ queryKey: false })}, React.createElement(react_router_1.Route, {"path": "store", "component": Store_1.Store}), React.createElement(react_router_1.Route, {"path": "*", "component": Home_1.Home})), document.getElementById(constants_1.MAIN_CONTAINER_ID));
 
-},{"./components/Home":3,"./components/Store":8,"./constants":9,"history":46,"react":241,"react-dom":61,"react-router":81}],12:[function(require,module,exports){
+},{"./components/Home":3,"./components/Store":8,"./constants":9,"./stores/ShelfStore":13,"history":46,"react":241,"react-dom":61,"react-router":81}],12:[function(require,module,exports){
 /// <reference path="../d.ts/react/react.d.ts" />
 /// <reference path="../d.ts/flux/flux.d.ts" />
 /// <reference path="../d.ts/eventemitter3/eventemitter3.d.ts" />
@@ -427,6 +429,7 @@ var ShelfStoreClass = (function (_super) {
         _super.call(this);
         this.currency = '$';
         this.menuUrl = '../menu.json';
+        this.menuIsLoading = false;
         AppDispatcher_1.Dispatcher.register(function (action) {
             switch (action.type) {
                 case constants_1.LOAD_STORE_ITEMS:
@@ -442,14 +445,15 @@ var ShelfStoreClass = (function (_super) {
     ShelfStoreClass.prototype.loadStoreItems = function (force) {
         var _this = this;
         if (force === void 0) { force = false; }
-        if (!this.menu || force == true) {
+        if (!this.menuIsLoading && (!this.menu || force == true)) {
+            this.menuIsLoading = true;
             axios.get(this.menuUrl)
                 .then(function (response) {
                 _this.menu = response.data;
+                _this.menuIsLoading = false;
                 _this.emit('change-category');
-            })
-                .catch(function (response) {
-                console.log(response);
+            }, function () {
+                _this.menuIsLoading = false;
             });
         }
     };

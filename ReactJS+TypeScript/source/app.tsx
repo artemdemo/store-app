@@ -10,7 +10,10 @@ import {createHashHistory} from 'history';
 
 import {Home} from './components/Home';
 import {Store} from './components/Store';
+import {ShelfStore} from './stores/ShelfStore';
 import {MAIN_CONTAINER_ID} from './constants';
+
+ShelfStore.loadStoreItems();
 
 /**
  * Thing about the history

@@ -38,6 +38,7 @@ class ShelfStoreClass extends EventEmitter {
     private menuUrl: string = '../menu.json';
 
     private menu;
+    private menuIsLoading: boolean = false;
     private currentCategory: ICategory;
 
     constructor() {
@@ -55,15 +56,16 @@ class ShelfStoreClass extends EventEmitter {
         });
     }
 
-    private loadStoreItems(force: boolean = false): void {
-        if(!this.menu || force == true) {
+    public loadStoreItems(force: boolean = false): void {
+        if(!this.menuIsLoading && (!this.menu || force == true)) {
+            this.menuIsLoading = true;
             axios.get(this.menuUrl)
                 .then((response) => {
                     this.menu = response.data;
+                    this.menuIsLoading = false;
                     this.emit('change-category');
-                })
-                .catch((response) => {
-                    console.log(response);
+                }, () => {
+                    this.menuIsLoading = false;
                 });
         }
     }

@@ -2,19 +2,33 @@
 /// <reference path="../d.ts/flux/flux.d.ts" />
 
 import {Dispatcher} from '../dispatcher/AppDispatcher';
-import {LOAD_STORE_ITEMS, SET_CATEGORY} from '../constants';
+import * as constants from '../constants';
 
 export class StoreAction {
     public static loadItems() {
         Dispatcher.dispatch({
-            type: LOAD_STORE_ITEMS
+            type: constants.LOAD_STORE_ITEMS
         });
     }
 
     public static setCategory(category) {
         Dispatcher.dispatch({
-            type: SET_CATEGORY,
+            type: constants.SET_CATEGORY,
             data: category
+        });
+    }
+
+    public static addItemToCart(item) {
+        Dispatcher.dispatch({
+            type: constants.ADD_ITEM_TO_CART,
+            data: item
+        });
+    }
+
+    public static removeItemFromCart(item) {
+        Dispatcher.dispatch({
+            type: constants.REMOVE_ITEM_FROM_CART,
+            data: item
         });
     }
 }

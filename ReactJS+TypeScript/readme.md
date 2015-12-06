@@ -1,4 +1,4 @@
-# ReactJS + TypeScrip + Server render
+# ReactJS + TypeScript + Flux
 
 ```
 $ npm install

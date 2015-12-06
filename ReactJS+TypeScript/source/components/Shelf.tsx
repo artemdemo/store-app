@@ -15,7 +15,6 @@ interface IShelfStats {
     items: IItem[]
 }
 
-
 export class Shelf extends React.Component<IShelfProps, IShelfStats> {
 
     public state: IShelfStats;
@@ -26,36 +25,36 @@ export class Shelf extends React.Component<IShelfProps, IShelfStats> {
             items: []
         };
         StoreAction.loadItems();
-    }
+    };
 
-    private updateShelf(): void {
+    private updateShelf = () => {
         let category: ICategory = ShelfStore.getCurrentCategory();
         this.setState({
             items: category.items
         });
-    }
+    };
 
     public componentDidMount(): void {
-        ShelfStore.on('change-category', this.updateShelf.bind(this));
-    }
+        ShelfStore.on('change-category', this.updateShelf);
+    };
 
     public componentWillUnmount(): void {
-        ShelfStore.removeListener('change-category', this.updateShelf.bind(this));
-    }
+        ShelfStore.removeListener('change-category', this.updateShelf);
+    };
 
     public renderCategoryItems() {
         return ShelfStore.getMenu().map((category: ICategory, i: number) => {
             let id = String(category.id) + i;
             return <SingleCategory key={id} cat={category} />;
         })
-    }
+    };
 
     public renderProducts() {
         return this.state.items.map((product: IItem, i: number) => {
             let id = String(product.id) + i;
             return <SingleProduct key={id} product={product} />;
         })
-    }
+    };
 
     public render() {
         return (
@@ -72,5 +71,5 @@ export class Shelf extends React.Component<IShelfProps, IShelfStats> {
                 </div>
             </div>
         );
-    }
+    };
 }

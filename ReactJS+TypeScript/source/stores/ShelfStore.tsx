@@ -1,14 +1,13 @@
 /// <reference path="../d.ts/react/react.d.ts" />
 /// <reference path="../d.ts/flux/flux.d.ts" />
 /// <reference path="../d.ts/axios/axios.d.ts" />
-/// <reference path="../d.ts/es6-promise/es6-promise.d.ts" />
 /// <reference path="../d.ts/eventemitter3/eventemitter3.d.ts" />
 
 import EventEmitter = require('eventemitter3');
 import axios = require('axios');
 
 import {Dispatcher} from '../dispatcher/AppDispatcher';
-import {LOAD_STORE_ITEMS} from '../constants';
+import {LOAD_STORE_ITEMS, SET_CATEGORY} from '../constants';
 
 export interface IModifier {
     id: string;
@@ -48,21 +47,29 @@ class ShelfStoreClass extends EventEmitter {
                 case LOAD_STORE_ITEMS:
                     this.loadStoreItems();
                     break;
+                case SET_CATEGORY:
+                    this.currentCategory = action.data;
+                    this.emit('change-category');
+                    break;
             }
         });
     }
 
-    private loadStoreItems(): void {
-        axios.get(this.menuUrl)
-            .then((response) => {
-                this.menu = response.data;
-                this.currentCategory = response.data[0];
-                this.emit('change-category');
-                console.log(response.data);
-            })
-            .catch((response) => {
-                console.log(response);
-            });
+    private loadStoreItems(force: boolean = false): void {
+        if(!this.menu || force == true) {
+            axios.get(this.menuUrl)
+                .then((response) => {
+                    this.menu = response.data;
+                    this.emit('change-category');
+                })
+                .catch((response) => {
+                    console.log(response);
+                });
+        }
+    }
+
+    public renderPrice(price: number): string {
+        return this.currency + price.toFixed(2);
     }
 
     public getMenu(): ICategory[] {
@@ -70,10 +77,14 @@ class ShelfStoreClass extends EventEmitter {
     }
 
     public getCurrentCategory(): ICategory {
-        return this.currentCategory;
+        let category;
+        if (!this.currentCategory && this.menu) {
+            category = this.menu[0]
+        } else {
+            category = this.currentCategory
+        }
+        return category;
     }
 }
 
-var ShelfStore = new ShelfStoreClass();
-
-export {ShelfStore};
+export var ShelfStore = new ShelfStoreClass();

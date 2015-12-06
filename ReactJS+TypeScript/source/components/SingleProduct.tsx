@@ -4,7 +4,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import {IItem} from "../stores/ShelfStore";
+import {IItem} from '../stores/ShelfStore';
+import {ShelfStore} from '../stores/ShelfStore';
+import {StoreAction} from '../actions/StoreAction';
 
 interface ISingleProductProps {
     key: string;
@@ -14,18 +16,19 @@ interface ISingleProductStats {}
 
 export class SingleProduct extends React.Component<ISingleProductProps, ISingleProductStats> {
 
-    private addToCart() {}
+    private addToCart = () => {
+        StoreAction.addItemToCart(this.props.product);
+    };
 
     public render() {
         return (
             <li className="item clearRow" onClick={this.addToCart}>
                 <div className="clearRow">
                     <div className="name left">{this.props.product.name}</div>
-                    <div className="price right">{this.props.product.price}</div>
+                    <div className="price right">{ShelfStore.renderPrice(this.props.product.price)}</div>
                 </div>
                 <div className="description muted-text">{this.props.product.description}</div>
             </li>
         );
-    }
-
+    };
 }

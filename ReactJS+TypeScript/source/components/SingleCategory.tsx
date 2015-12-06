@@ -11,10 +11,12 @@ interface ISingleCategoryProps {
     key: string;
     cat: ICategory;
 }
+
 interface ISingleCategoryStats {
     active: boolean;
 }
 
+let singleCategoryContext;
 
 export class SingleCategory extends React.Component<ISingleCategoryProps, ISingleCategoryStats> {
 
@@ -24,34 +26,33 @@ export class SingleCategory extends React.Component<ISingleCategoryProps, ISingl
         super(props);
         this.state = {
             active: false
-        }
-    }
+        };
+        singleCategoryContext = this;
+    };
 
-    private toggleCategory(): void {
+    public toggleCategory = () => {
         StoreAction.setCategory(this.props.cat);
         this.setState({
             active: !this.state.active
         });
-    }
+    };
 
-    private updateCategory(): void {
+    private updateCategory = () => {
         let active: boolean = false;
         let newCategory: ICategory = ShelfStore.getCurrentCategory();
         if ( newCategory.id == this.props.cat.id ) active = true;
         this.setState({
             active: active
         });
-    }
+    };
 
-    public getInitialState() {
-        return {
-            active: false
-        };
-    }
-
-    public componentWillMount() {
+    public componentDidMount() {
         ShelfStore.on('change-category', this.updateCategory);
-    }
+    };
+
+    public componentWillUnmount(): void {
+        ShelfStore.removeListener('change-category', this.updateCategory);
+    };
 
     public render() {
         var catClass = this.state.active ? 'item active' : 'item';
@@ -60,5 +61,5 @@ export class SingleCategory extends React.Component<ISingleCategoryProps, ISingl
                 {this.props.cat.category}
             </li>
         );
-    }
+    };
 }

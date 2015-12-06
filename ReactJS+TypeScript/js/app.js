@@ -69,6 +69,7 @@ var Cart = (function (_super) {
     ;
     Cart.prototype.componentDidMount = function () {
         CartStore_1.CartStore.on('update-cart', this.updateCart);
+        this.updateCart();
     };
     ;
     Cart.prototype.componentWillUnmount = function () {
@@ -126,9 +127,11 @@ var Shelf = (function (_super) {
         _super.call(this, props);
         this.updateShelf = function () {
             var category = ShelfStore_1.ShelfStore.getCurrentCategory();
-            _this.setState({
-                items: category.items
-            });
+            if (category) {
+                _this.setState({
+                    items: category.items
+                });
+            }
         };
         this.state = {
             items: []
@@ -138,6 +141,7 @@ var Shelf = (function (_super) {
     ;
     Shelf.prototype.componentDidMount = function () {
         ShelfStore_1.ShelfStore.on('change-category', this.updateShelf);
+        this.updateShelf();
     };
     ;
     Shelf.prototype.componentWillUnmount = function () {
@@ -235,6 +239,7 @@ var SingleCategory = (function (_super) {
     ;
     SingleCategory.prototype.componentDidMount = function () {
         ShelfStore_1.ShelfStore.on('change-category', this.updateCategory);
+        this.updateCategory();
     };
     ;
     SingleCategory.prototype.componentWillUnmount = function () {

@@ -48,6 +48,7 @@ export class SingleCategory extends React.Component<ISingleCategoryProps, ISingl
 
     public componentDidMount() {
         ShelfStore.on('change-category', this.updateCategory);
+        this.updateCategory();
     };
 
     public componentWillUnmount(): void {

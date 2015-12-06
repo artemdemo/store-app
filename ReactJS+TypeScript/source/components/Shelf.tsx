@@ -29,13 +29,16 @@ export class Shelf extends React.Component<IShelfProps, IShelfStats> {
 
     private updateShelf = () => {
         let category: ICategory = ShelfStore.getCurrentCategory();
-        this.setState({
-            items: category.items
-        });
+        if (category) {
+            this.setState({
+                items: category.items
+            });
+        }
     };
 
     public componentDidMount(): void {
         ShelfStore.on('change-category', this.updateShelf);
+        this.updateShelf();
     };
 
     public componentWillUnmount(): void {

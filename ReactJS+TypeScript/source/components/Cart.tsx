@@ -38,6 +38,7 @@ export class Cart extends React.Component<ICartProps, ICartStats> {
 
     public componentDidMount(): void {
         CartStore.on('update-cart', this.updateCart);
+        this.updateCart();
     };
 
     public componentWillUnmount(): void {

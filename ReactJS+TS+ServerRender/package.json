@@ -1,0 +1,31 @@
+{
+  "name": "reactjs-typescript",
+  "version": "1.0.0",
+  "description": "ReactJS with TypeScript and server render",
+  "scripts": {
+    "build": "gulp build",
+    "watch": "gulp watch",
+    "server": "node server.js"
+  },
+  "author": "Artem Demo",
+  "devDependencies": {
+    "axios": "^0.7.0",
+    "browserify-middleware": "^7.0.0",
+    "es6-promise": "^3.0.2",
+    "eventemitter3": "^1.1.1",
+    "flux": "^2.1.1",
+    "gulp": "^3.9.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-less": "^3.0.5",
+    "gulp-shell": "^0.5.1",
+    "gulp-typescript": "^2.9.2",
+    "history": "^1.13.1",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "react-router": "^1.0.0"
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "express-handlebars": "^2.0.1"
+  }
+}

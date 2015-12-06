@@ -1,0 +1,181 @@
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+button {
+  cursor: pointer;
+}
+.clearRow:after {
+  clear: both;
+  display: table;
+  content: " ";
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.muted-text {
+  color: #aaaaaa;
+}
+.center {
+  text-align: center;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+#mainContainer {
+  background: url('../../_img/fruits_blured.jpeg');
+  background-repeat: no-repeat;
+  position: absolute;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+.home-page {
+  margin: 20% auto 0 auto;
+  width: 95%;
+  min-width: 1000px;
+  text-align: center;
+  color: white;
+}
+.home-page h1 {
+  font-size: 80px;
+  font-weight: 400;
+  line-height: 80px;
+}
+.home-page button,
+.home-page .button {
+  width: 300px;
+  font-weight: 400;
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: orangered;
+  color: white;
+  border: 0;
+  border-radius: 3px;
+  font-size: 24px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.27);
+  text-decoration: none;
+}
+.store-page {
+  margin: 10% auto 0 auto;
+  width: 80%;
+  min-width: 1000px;
+}
+.store-page .shelfContainer {
+  float: left;
+  width: 68%;
+}
+.store-page .shelfContainer .categoriesContainer .list {
+  color: white;
+  background-color: black;
+}
+.store-page .shelfContainer .categoriesContainer .list .active {
+  background-color: orangered;
+}
+.store-page .shelfContainer .categoriesContainer .list li {
+  cursor: pointer;
+  display: block;
+  padding: 11px 22px;
+  text-align: center;
+  float: left;
+}
+.store-page .shelfContainer .categoriesContainer .list li:hover {
+  background-color: orangered;
+}
+.store-page .shelfContainer .itemsContainer {
+  min-height: 607px;
+  max-height: 607px;
+  background-color: white;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.store-page .shelfContainer .itemsContainer .list {
+  color: black;
+  background-color: white;
+}
+.store-page .shelfContainer .itemsContainer .list li {
+  cursor: pointer;
+  display: block;
+  padding: 15px 22px;
+  border-bottom: 1px solid #ededed;
+}
+.store-page .shelfContainer .itemsContainer .list li:hover {
+  background-color: #f0f0f0;
+}
+.store-page .shelfContainer .itemsContainer .list .description {
+  height: 43px;
+  margin-top: 5px;
+  font-size: 15px;
+  overflow: hidden;
+}
+.store-page .cartContainer {
+  float: right;
+  width: 30%;
+  border: 2px solid orangered;
+  background-color: white;
+}
+.store-page .cartContainer h1 {
+  font-weight: 400;
+  margin: 0;
+  padding: 7px 0;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  background-color: orangered;
+}
+.store-page .cartContainer .cartItemsContainer {
+  min-height: 464px;
+  max-height: 464px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.store-page .cartContainer .list .item {
+  padding: 13px 15px;
+  border-bottom: 1px solid #ededed;
+}
+.store-page .cartContainer .list .item .remove {
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid orangered;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+  line-height: 14px;
+  font-size: 12px;
+  position: relative;
+  top: -2px;
+  cursor: pointer;
+}
+.store-page .cartContainer .cartTotalsContainer {
+  color: white;
+  background-color: orangered;
+}
+.store-page .cartContainer .cartTotalsContainer .line {
+  padding: 6px 37px 0px 15px;
+}
+.store-page .cartContainer .cartTotalsContainer .line:last-of-type {
+  padding-bottom: 7px;
+}
+.store-page .cartContainer .cartTotalsContainer .total {
+  font-weight: 700;
+}
+.store-page .cartContainer .checkoutContainer button {
+  width: 100%;
+  font-weight: 400;
+  display: block;
+  margin: 0 auto;
+  padding: 14px;
+  background-color: #ff911a;
+  color: white;
+  border: 0;
+  font-size: 21px;
+}
+.hide {
+  display: none;
+}

@@ -11,7 +11,7 @@ var Home = React.createClass({
             <h1>Start shopping now</h1>
             <button onClick={this.openStore} className="button">Enter Store</button>
         </div>
-    </div>
+      </div>
     );
   }
 });

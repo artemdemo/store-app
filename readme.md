@@ -6,13 +6,14 @@ Creating store application with different frameworks
 * AngularJS
 * AngularJS + TypeScript
 * ReactJS
+* ReactJS + TypeScript
 * Backbone
 * Backbone + RequireJS
 * Angular 2 (work in progress)
 * EmberJS (work in progress)
 
 
-Menu was created with help of http://www.json-generator.com/<br>
+Menu was created with help of [http://www.json-generator.com/](http://www.json-generator.com/)<br>
 This is the code:
 ```javascript
 [
@@ -47,13 +48,12 @@ This is the code:
 The easiest way is to run
 ```
 $ npm install
-$ grunt serve
+$ npm run start
 ```
 from the main directory /store-app
 
-Then go to http://localhost:9000/
+Then go to [http://localhost:9000/](http://localhost:9000/)
 
-Keep in mind that each project has it's own node_modules, therefore you nee to run "$ npm install" in each directory if you want to make some changes.
+Keep in mind that each project has it's own node_modules, therefore you nee to run `$ npm install` in each directory if you want to make some changes.
 
 ![alt tag](https://github.com/artemdemo/store-app/blob/master/_img/store-app.png)
-

@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     /*
      * In order to run server just use command
      * $ grunt serve
-     * The you will be able to open files from the server: http://localhost:9000/index.html
+     * Then you will be able to open files from the server: http://localhost:9000/index.html
      */
     grunt.loadNpmTasks('grunt-serve');
 };

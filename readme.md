@@ -6,7 +6,7 @@ Creating store application with different frameworks
 * AngularJS
 * AngularJS + TypeScript
 * ReactJS
-* ReactJS + TypeScript
+* ReactJS + TypeScript + Flux
 * Backbone
 * Backbone + RequireJS
 * Angular 2 (work in progress)

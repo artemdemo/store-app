@@ -5,8 +5,8 @@
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {Router, Route, Link} from 'react-router'
-import {createHashHistory} from 'history';
+import {Router, Route} from 'react-router'
+import {createHashHistory, createHistory, createMemoryHistory} from 'history';
 
 import {Home} from './components/Home';
 import {Store} from './components/Store';
@@ -26,10 +26,14 @@ ShelfStore.loadStoreItems();
  *
  * Main source: http://rackt.org/history/stable/HashHistoryCaveats.html
  * Another source: http://stackoverflow.com/a/32833208
+ *
+ * More about history: https://github.com/rackt/react-router/blob/master/docs/guides/basics/Histories.md
+ *
+ * By the way `createHistory()` in TS terminology is `createBrowserHistory()`
  */
 
 ReactDOM.render(
-	<Router history={createHashHistory({queryKey: false})}>
+	<Router history={createHistory()}>
 		<Route path="store" component={Store}/>
 		<Route path="*" component={Home}/>
 	</Router>,

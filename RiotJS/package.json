@@ -1,0 +1,19 @@
+{
+  "name": "riotjs-and-es6",
+  "version": "1.0.0",
+  "description": "RiotJS with ES6",
+  "scripts": {
+    "build": "gulp build",
+    "watch": "gulp watch"
+  },
+  "author": "Artem Demo",
+  "devDependencies": {
+    "babel-core": "^6.3.17",
+    "babel-preset-es2015": "^6.3.13",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-less": "^3.0.5",
+    "riotjs": "^1.0.4"
+  }
+}

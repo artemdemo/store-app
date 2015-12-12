@@ -1,7 +1,7 @@
 {
   "name": "reactjs-typescript",
   "version": "1.0.0",
-  "description": "ReactJS with TypeScript and server render",
+  "description": "ReactJS with TypeScript and flux",
   "scripts": {
     "build": "gulp build",
     "watch": "gulp watch"

@@ -8,6 +8,7 @@ Creating store application with different frameworks
 * ReactJS
 * ReactJS + TypeScript + Flux
 * ReactJS + TypeScript + Flux + Server Render
+* RiotJS
 * Backbone
 * Backbone + RequireJS
 * Angular 2 (work in progress)

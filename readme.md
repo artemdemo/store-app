@@ -2,13 +2,21 @@
 
 Creating store application with different frameworks
 
-### Application by used technology
+## What I'm testing in each framework
+
+* Routing
+* Data model
+* Data flow between isolated parts (controllers / components / directives / etc...)
+
+
+## Applications
+
 * AngularJS
 * AngularJS + TypeScript
-* ReactJS
+* ReactJS (jsx)
 * ReactJS + TypeScript + Flux
 * ReactJS + TypeScript + Flux + Server Render
-* RiotJS
+* RiotJS + ES6 (babel)
 * Backbone
 * Backbone + RequireJS
 * Angular 2 (work in progress)
@@ -46,7 +54,8 @@ This is the code:
 ]
 ```
 
-### How to start
+## How to start
+
 The easiest way is to run
 ```
 $ npm install
@@ -56,6 +65,7 @@ from the main directory /store-app
 
 Then go to [http://localhost:9000/](http://localhost:9000/)
 
-Keep in mind that each project has it's own node_modules, therefore you nee to run `$ npm install` in each directory if you want to make some changes.
+Keep in mind that each project has it's own node_modules, therefore you nee to run `$ npm install`
+in each directory if you want to make some changes.
 
 ![alt tag](https://github.com/artemdemo/store-app/blob/master/_img/store-app.png)

@@ -13,6 +13,10 @@ gulp.task('js', () => {
         .pipe(gulp.dest('js/tmp'));
 });
 
+/**
+ * There is no `*.riot` files in this project, but they will be supported authomagically if you' ll add them.
+ * `*.riot` is same as `*.tag`.
+ */
 gulp.task('riot', () => {
     return gulp.src('source/**/*.riot')
         .pipe(riot({

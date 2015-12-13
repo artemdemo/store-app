@@ -7,6 +7,7 @@ Creating store application with different frameworks
 * Routing
 * Data model
 * Data flow between isolated parts (controllers / components / directives / etc...)
+* Server-side rendering
 
 
 ## Applications

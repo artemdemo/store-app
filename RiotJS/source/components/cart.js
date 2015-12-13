@@ -1,6 +1,5 @@
 import Riot from 'riot';
 import {MenuService} from '../models/MenuService';
-import {CartEmitter} from '../emmiters/CartEmitter';
 
 const template = `
     <div class="cartContainer" ng-controller="cartCtrl">
@@ -45,12 +44,17 @@ const template = `
 const constructor = function() {
     this.cartItems = [];
 
-    CartEmitter.on('add-to-cart', (item) => {
-        //console.log('this.addToCart', item);
-        this.cartItems.push(item);
+    this.addToCart = (item) => {
+        this.cartItems.push({
+            '$$id': +(new Date()),
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            tax: item.tax
+        });
         console.log(this.cartItems);
-        this.update();
-    });
+        this.update()
+    };
 
     /**
      * By the way a thing about using functions in riotjs templating:

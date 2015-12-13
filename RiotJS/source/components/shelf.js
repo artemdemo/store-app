@@ -1,6 +1,6 @@
 import Riot from 'riot';
 import {MenuService} from '../models/MenuService';
-import {CartEmitter} from '../emmiters/CartEmitter';
+import {CartObservable} from '../observables/CartObservable';
 
 const template = `
     <div class="shelfContainer">
@@ -48,7 +48,7 @@ const constructor = function() {
     };
 
     this.addToCart = (e) => {
-        CartEmitter.addToCart(e.item);
+        CartObservable.addToCart(e.item);
     }
 };
 

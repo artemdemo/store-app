@@ -5,6 +5,7 @@ import {home} from './components/home';
 import {store} from './components/store';
 
 import {MenuService} from './models/MenuService';
+import {CartObservable} from './observables/CartObservable';
 
 let mainContainerEl = document.getElementById('mainContainer');
 let currentPage;
@@ -23,7 +24,12 @@ Route(() => changePage('home'));
 /**
  * Store page
  */
-Route('/store', () => changePage('store'));
+Route('/store', () => {
+    changePage('store');
+
+    // ToDo: Mode it from here. I don't like this solution
+    CartObservable.on('add-to-cart', currentPage[0].tags.cart.addToCart);
+});
 
 /**
  * Start routing and execute route for current url

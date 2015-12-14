@@ -1,5 +1,6 @@
 import Riot from 'riot';
 import {MenuService} from '../models/MenuService';
+import {CartObservable} from '../observables/CartObservable';
 
 const template = `
     <div class="cartContainer" ng-controller="cartCtrl">
@@ -22,15 +23,15 @@ const template = `
         <div class="cartTotalsContainer">
             <div class="clearRow line subtotal">
                 <div class="title left">Subtotal:</div>
-                <div class="amount right"></div>
+                <div class="amount right">{renderPrice(subtotal)}</div>
             </div>
             <div class="clearRow line tax">
                 <div class="title left">Tax:</div>
-                <div class="amount right"></div>
+                <div class="amount right">{renderPrice(tax)}</div>
             </div>
             <div class="clearRow line total">
                 <div class="title left">Total:</div>
-                <div class="amount right"></div>
+                <div class="amount right">{renderPrice(total)}</div>
             </div>
         </div>
 
@@ -44,7 +45,20 @@ const template = `
 const constructor = function() {
     this.cartItems = [];
 
-    this.addToCart = (item) => {
+    let calcuateTotals = () => {
+        this.total = 0;
+        this.subtotal = 0;
+        this.tax = 0;
+        this.cartItems.forEach((item) => {
+            this.subtotal += item.price;
+            this.tax += item.tax;
+        });
+        this.total = this.subtotal + this.tax;
+    };
+
+    calcuateTotals();
+
+    CartObservable.on('add-to-cart', (item) => {
         this.cartItems.push({
             '$$id': +(new Date()),
             id: item.id,
@@ -52,9 +66,9 @@ const constructor = function() {
             price: item.price,
             tax: item.tax
         });
-        console.log(this.cartItems);
+        calcuateTotals();
         this.update()
-    };
+    });
 
     /**
      * By the way a thing about using functions in riotjs templating:
@@ -62,7 +76,13 @@ const constructor = function() {
      */
     this.renderPrice = MenuService.renderPrice;
 
-    this.removeItem = () => {
+    this.removeItem = (e) => {
+        this.cartItems.forEach((item, i) => {
+            if (item.$$id == e.item.$$id) {
+                this.cartItems.splice(i,1);
+            }
+        });
+        calcuateTotals();
         this.update();
     }
 };

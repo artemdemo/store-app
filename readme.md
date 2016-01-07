@@ -20,8 +20,7 @@ Creating store application with different frameworks
 * RiotJS + ES6 (babel)
 * Backbone
 * Backbone + RequireJS
-* Angular 2 (work in progress)
-* EmberJS (work in progress)
+* Angular 2
 
 
 Menu was created with help of [http://www.json-generator.com/](http://www.json-generator.com/)<br>

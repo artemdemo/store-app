@@ -1,5 +1,4 @@
 import {Component, View, Inject} from 'angular2/core';
-import {NgFor} from 'angular2/common';
 
 import {StoreService} from './StoreService';
 import {CartService} from './CartService';
@@ -9,7 +8,6 @@ import {CartService} from './CartService';
     providers: [StoreService, CartService]
 })
 @View({
-    directives: [NgFor],
     template: `
     <div class="shelfContainer">
         <div class="categoriesContainer">

@@ -1,5 +1,4 @@
 import {Component, View, Inject} from 'angular2/core';
-import {NgFor} from 'angular2/common';
 
 import {CartService} from './CartService';
 import {StoreService} from './StoreService';

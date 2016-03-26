@@ -20,6 +20,7 @@ Creating store application with different frameworks
 * RiotJS + ES6 (babel)
 * Backbone
 * Backbone + RequireJS
+* Backbone + RequireJS + packed
 * Angular 2
 
 

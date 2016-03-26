@@ -1,0 +1,23 @@
+<div class="categoriesContainer">
+    <ul class="list clearRow">
+        <% _.each(categories, function(cat){ %>
+        <li class="item <%= (cat.get('id') == currentCategoryID) ? 'active' : '' %>"
+            data-category-id="<%= cat.get('id') %>">
+            <%= cat.get('category') %>
+        </li>
+        <% }); %>
+    </ul>
+</div>
+<div class="itemsContainer">
+    <ul class="list">
+        <% _.each(currentCategoryItems, function(item){ %>
+        <li class="item clearRow" data-item-id="<%= item.get('id') %>">
+            <div class="clearRow">
+                <div class="name left"><%= item.get('name') %></div>
+                <div class="price right"><%= renderPrice( item.get('price') ) %></div>
+            </div>
+            <div class="description muted-text"><%= item.get('description') %></div>
+        </li>
+        <% }); %>
+    </ul>
+</div>

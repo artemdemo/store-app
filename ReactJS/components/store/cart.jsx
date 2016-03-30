@@ -61,7 +61,7 @@ var Cart = React.createClass({
     render: function() {
         var itemsMsgClass = this.state.cartItems.length ? 'hide' : 'muted-text center';
         return (
-            <div className="cartContainer" ng-controller="cartCtrl">
+            <div className="cartContainer">
                 <h1>Your Cart</h1>
                 <div className="cartItemsContainer">
                     <div className={itemsMsgClass}>There are no items in the cart</div>

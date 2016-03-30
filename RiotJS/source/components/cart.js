@@ -3,7 +3,7 @@ import {MenuService} from '../models/MenuService';
 import {CartObservable} from '../observables/CartObservable';
 
 const template = `
-    <div class="cartContainer" ng-controller="cartCtrl">
+    <div class="cartContainer">
         <h1>Your Cart</h1>
         <div class="cartItemsContainer">
             <div class="{hide: cartItems.length > 0, 'muted-text center': cartItems.length == 0}" >

@@ -48,7 +48,7 @@ export class Cart extends React.Component<ICartProps, ICartStats> {
     public render() {
         let itemsMsgClass = this.state.items.length == 0 ? 'muted-text center' : 'hide';
         return (
-            <div className="cartContainer" ng-controller="cartCtrl">
+            <div className="cartContainer">
                 <h1>Your Cart</h1>
                 <div className="cartItemsContainer">
                     <div className={itemsMsgClass} >There are no items in the cart</div>

@@ -14,14 +14,15 @@ Creating store application with different frameworks
 
 * AngularJS
 * AngularJS + TypeScript
-* ReactJS (jsx)
+* Angular 2
+* ReactJS (ES5)
+* ReactJS + Redux
 * ReactJS + TypeScript + Flux
 * ReactJS + TypeScript + Flux + Server Render
-* RiotJS + ES6 (babel)
+* RiotJS + ES2015
 * Backbone
 * Backbone + RequireJS
 * Backbone + RequireJS + packed
-* Angular 2
 
 
 Menu was created with help of [http://www.json-generator.com/](http://www.json-generator.com/)<br>

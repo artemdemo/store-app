@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import CartItem from './CartItem';
+import CartTotals from './CartTotals';
 
 class Cart extends React.Component {
     constructor(props) {
@@ -26,20 +27,7 @@ class Cart extends React.Component {
                         ))}
                     </ul>
                 </div>
-                <div className="cartTotalsContainer">
-                    <div className="clearRow line subtotal">
-                        <div className="title left">Subtotal:</div>
-                        <div className="amount right"></div>
-                    </div>
-                    <div className="clearRow line tax">
-                        <div className="title left">Tax:</div>
-                        <div className="amount right"></div>
-                    </div>
-                    <div className="clearRow line total">
-                        <div className="title left">Total:</div>
-                        <div className="amount right"></div>
-                    </div>
-                </div>
+                <CartTotals></CartTotals>
                 <div className="checkoutContainer">
                     <button className="checkout">
                         Checkout

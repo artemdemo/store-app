@@ -23,10 +23,6 @@ const storeApp = combineReducers({
 });
 const store = createStore(storeApp);
 
-store.subscribe(() => {
-    console.log(store.getState());
-});
-
 axios.get('../menu.json').then(responseObj => {
     store.dispatch(updateMenu(responseObj.data));
     store.dispatch(selectCategory(responseObj.data[0].id));

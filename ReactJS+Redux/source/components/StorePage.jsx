@@ -1,8 +1,9 @@
 import * as React from 'react';
 
-export default class StorePage extends React.Component {
-    state = {};
+import Shelf from './Shelf';
+import Cart from './Cart';
 
+export default class StorePage extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -15,7 +16,8 @@ export default class StorePage extends React.Component {
         return (
             <div className="store-page">
                 <div className="container clearRow">
-                    Store Page
+                    <Shelf></Shelf>
+                    <Cart></Cart>
                 </div>
             </div>
         );

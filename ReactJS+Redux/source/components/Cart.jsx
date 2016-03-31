@@ -1,6 +1,8 @@
 import * as React from 'react';
+import {connect} from 'react-redux';
+import CartItem from './CartItem';
 
-export default class Cart extends React.Component {
+class Cart extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -10,11 +12,19 @@ export default class Cart extends React.Component {
     componentWillUnmount() {};
 
     render() {
+        const {cart} = this.props;
+        const classStr = cart.length == 0 ? 'muted-text center' : 'muted-text center hide';
+        
         return (
             <div className="cartContainer">
                 <h1>Your Cart</h1>
                 <div className="cartItemsContainer">
-                    <div className="muted-text center">There are no items in the cart</div>
+                    <div className={classStr}>There are no items in the cart</div>
+                    <ul className="list">
+                        {cart.map(item => (
+                            <CartItem item={item} key={'cart-' + item._uniqueId}></CartItem>
+                        ))}
+                    </ul>
                 </div>
                 <div className="cartTotalsContainer">
                     <div className="clearRow line subtotal">
@@ -39,3 +49,12 @@ export default class Cart extends React.Component {
         );
     }
 }
+
+export default connect(
+    state => {
+        return {
+            cart: state.cart
+        }
+    },
+    {}
+)(Cart);

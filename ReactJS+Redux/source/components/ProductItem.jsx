@@ -1,6 +1,8 @@
 import * as React from 'react';
+import {connect} from 'react-redux';
+import {addToCart} from '../actions/cart';
 
-export default class ProductItem extends React.Component {
+class ProductItem extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -10,10 +12,14 @@ export default class ProductItem extends React.Component {
     componentWillUnmount() {};
 
     render() {
-        const {product} = this.props;
+        const {product, addToCart} = this.props;
+
+        const addToCartThisProduct = () => {
+            addToCart(product)
+        };
 
         return (
-            <li className="item clearRow">
+            <li className="item clearRow" onClick={addToCartThisProduct}>
                 <div className="clearRow">
                     <div className="name left">{product.name}</div>
                     <div className="price right">${product.price}</div>
@@ -25,3 +31,12 @@ export default class ProductItem extends React.Component {
         );
     }
 }
+
+export default connect(
+    state => {
+        return {}
+    },
+    {
+        addToCart
+    }
+)(ProductItem);

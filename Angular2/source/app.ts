@@ -1,4 +1,4 @@
-import {Component, View, Inject} from 'angular2/core';
+import {Component, Inject} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {Home} from './Home';
@@ -7,9 +7,7 @@ import {StoreService} from './StoreService';
 
 @Component({
     selector: 'store-app',
-    providers: [StoreService]
-})
-@View({
+    providers: [StoreService],
     directives: [ROUTER_DIRECTIVES],
     template: `
     <div id="mainContainer">

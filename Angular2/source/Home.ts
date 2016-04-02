@@ -1,10 +1,8 @@
-import {Component, View} from 'angular2/core';
-import {RouteConfig, RouteParams, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Component} from 'angular2/core';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
-    selector: 'home'
-})
-@View({
+    selector: 'home',
     directives: [ROUTER_DIRECTIVES],
     template: `
     <div class="home-page">

@@ -1,13 +1,11 @@
-import {Component, View, Inject} from 'angular2/core';
+import {Component, Inject} from 'angular2/core';
 
 import {CartService} from './CartService';
 import {StoreService} from './StoreService';
 
 @Component({
     selector: 'cart',
-    providers: [CartService]
-})
-@View({
+    providers: [CartService],
     template: `
     <div class="cartContainer">
         <h1>Your Cart</h1>

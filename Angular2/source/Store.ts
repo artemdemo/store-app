@@ -1,12 +1,10 @@
-import {Component, View} from 'angular2/core';
+import {Component} from 'angular2/core';
 
 import {Shelf} from './Shelf';
 import {Cart} from './Cart';
 
 @Component({
-    selector: 'store'
-})
-@View({
+    selector: 'store',
     directives: [Shelf, Cart],
     template: `
     <div class="store-page">

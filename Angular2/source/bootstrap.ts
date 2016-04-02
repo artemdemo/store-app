@@ -1,16 +1,16 @@
-import 'zone.js/lib/browser/zone-microtask';
-import 'reflect-metadata';
-// import 'es6-shim';
+/// <reference path="../node_modules/angular2/typings/browser.d.ts" />
 
-import {provide, enableProdMode} from 'angular2/core';
+import 'zone.js/dist/zone';
+import 'reflect-metadata';
+import 'es6-promise';
+import 'es6-shim';
+
+import {provide} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
 
 import {StoreApp} from './app';
-
-// Uncomment following line in order to enable Production Mode
-// enableProdMode();
 
 bootstrap(StoreApp, [
     HTTP_PROVIDERS,

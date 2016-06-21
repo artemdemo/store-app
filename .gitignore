@@ -1,6 +1,6 @@
 node_modules
 .idea
+typings
 npm-debug.log
 .brackets.json
 tmp
-npm-debug.log

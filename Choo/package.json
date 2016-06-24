@@ -1,0 +1,26 @@
+{
+  "name": "storeapp-choo",
+  "version": "1.0.0",
+  "description": "Store application with Choo.",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp build",
+    "watch": "gulp watch",
+    "server": "node server.js"
+  },
+  "author": "Artem Demo",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-preset-es2015": "^6.9.0",
+    "choo": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-browserify": "^0.5.1",
+    "gulp-less": "^3.1.0",
+    "gulp-shell": "^0.5.2"
+  },
+  "dependencies": {
+    "express-handlebars": "^3.0.0"
+  }
+}
